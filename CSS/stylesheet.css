@@ -1,7 +1,20 @@
+/*
+  PALETA DE COR
+  #010400 - quase preto
+  #30332E - cinza
+  #FFFBFC - offwhite
+  #62BBC1 - azul claro
+  #C3F73A - Verde Limao
+*/
+body{
+  background-color: #010400;
+  color: #FFFBFC;
+  font-family: verdana;
+}
 header{    
     height: 50px;
     text-align: center;
-    background: rgb(0, 255, 255);
+    background:#30332E;
     color: white;    
 }
 
@@ -10,7 +23,7 @@ footer{
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: rgb(0, 255, 255);
+    background-color: #30332E;
     color: white;    
 }
 
@@ -21,9 +34,23 @@ footer{
 }
 
 label{
-    color: black;
+    color:  #FFFBFC;
 }
 
 #linkCadastro{
     margin-left: 25px;
+}
+
+button{
+  border: none;
+  padding: 8px 20px;
+  background-color: #4d88ff;
+  color: #FFFBFC;
+}
+
+button.cadastro{
+  border: none;
+  padding: 8px 20px;
+  background-color:#C3F73A;
+  color: rgb(19, 19, 19);
 }
