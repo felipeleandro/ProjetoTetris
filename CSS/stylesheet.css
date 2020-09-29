@@ -1,13 +1,13 @@
 /*
   PALETA DE COR
-  #010400 - quase preto
+  #0E0F11 - quase preto
   #30332E - cinza
   #FFFBFC - offwhite
   #62BBC1 - azul claro
   #C3F73A - Verde Limao
 */
 body{
-  background-color: #010400;
+  background-color: #0E0F11;
   color: #FFFBFC;
   font-family: verdana;
 }
@@ -53,4 +53,13 @@ button.cadastro{
   padding: 8px 20px;
   background-color:#C3F73A;
   color: rgb(19, 19, 19);
+}
+
+div.fundo{
+	background-image: url('..\\Images\\Background1.png');
+	background-position: bottom;
+	background-size: 800px 100%;
+	height:400px;
+	width: 100%;
+	opacity: 70%;
 }
