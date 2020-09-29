@@ -1,12 +1,12 @@
+body{
+    background-image: url('..\\Images\\Background.png');
+}
+
 header{    
     height: 20px;
     text-align: center;
     background: rgb(0, 255, 255);
     color: white;    
-}
-
-img{
-    height: 700px;
 }
 
 footer{    
@@ -18,16 +18,28 @@ footer{
     color: white;    
 }
 
-#divLogin{    
-    padding-top: 15px;
-    padding-right: 10px;
-    float: right;    
-}
-
 label{
     color: black;
 }
 
-#linkCadastro{
-    margin-left: 25px;
+#divTabelaTetris {
+    margin: auto;
+    width: 50%;
+    border: 3px solid white;
+    top: 100px;
+    position: relative;
+    background-color: white;
+}
+
+table, th, td {
+    margin: auto;
+    border: 1px solid white;
+    border-collapse: collapse;
+    position: relative;
+}
+
+th, td{
+    width: 15px;
+    height: 15px;
+    background-color: rgb(23, 42, 60);
 }

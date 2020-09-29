@@ -1,5 +1,6 @@
 <html>
     <link rel="stylesheet" href="..\CSS\PaginaJogoTetris.css">
+    <script type="text/javascript" src="..\JavaScript\PaginaJogoTetris.js"> </script>
 
     <body>
         <title>
@@ -9,7 +10,14 @@
         <header>
         </header>
 
-        <img src="..\Images\Tetris_Board.png">
+        <div id="divTabelaTetris"></div>    
+        
+        <script>
+            criarTabelaTetris();
+
+            let pecaGerada = adicionarPecasTabela();
+            setInterval(movimentarPecasParaBaixo, 1000);
+        </script>
 
         <footer>
             Aqui irá ficar o footer da página
