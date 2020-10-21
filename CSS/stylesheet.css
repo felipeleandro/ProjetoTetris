@@ -5,61 +5,141 @@
   #FFFBFC - offwhite
   #62BBC1 - azul claro
   #C3F73A - Verde Limao
-*/
+*/@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,300&display=swap');
+
+*,
+*::before,
+*::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
 body{
-  background-color: #0E0F11;
-  color: #FFFBFC;
-  font-family: verdana;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
 }
-header{    
-    height: 50px;
-    text-align: center;
-    background:#30332E;
-    color: white;    
+.cadastro{
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1rem;
+  margin-left: 81rem;
+  margin-bottom:15rem ;
+}
+.login{
+  margin-right: 2rem;
+  text-decoration: none;
+  color: white;
+  display: block;
+
+}
+.hero{
+  align-items: center;
+  background: url(https://images.pexels.com/photos/1670977/pexels-photo-1670977.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) no-repeat no-repeat center center fixed;
+  display: flex;
+  flex-direction: column;
+  height: 720px;
+  justify-content: center;  
 }
 
-footer{    
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #30332E;
-    color: white;    
+.hero .mensagem{
+  margin-bottom: 6rem;
+  text-align: center;
+  width: 60%;
+  color: #f5f6fa;
 }
 
-#divLogin{    
-    padding-top: 15px;
-    padding-right: 10px;
-    float: right;    
+.hero h1{
+  font-size: 3rem;  
+  text-align: center;
 }
 
-label{
-    color:  #FFFBFC;
+.hero p{
+  font-style: italic; 
 }
 
-#linkCadastro{
-    margin-left: 25px;
+.hero .btn{
+  background: #d63031;
+  border-radius: 100px;
+  color: white;
+  display: block;
+  padding: 1rem 3rem;
+  text-decoration: none;
+  margin-bottom: 5rem;
 }
 
-button{
-  border: none;
-  padding: 8px 20px;
-  background-color: #4d88ff;
-  color: #FFFBFC;
+.apresentacao .titulo{
+  padding: 6rem 2rem; 
+  text-align: center;
 }
 
-button.cadastro{
-  border: none;
-  padding: 8px 20px;
-  background-color:#C3F73A;
-  color: rgb(19, 19, 19);
+.apresentacao .titulo > h1{
+  margin-bottom: 4rem;  
 }
 
-div.fundo{
-	background-image: url('..\\Images\\Background1.png');
-	background-position: bottom;
-	background-size: 800px 100%;
-	height:400px;
-	width: 100%;
-	opacity: 70%;
+.apresentacao .titulo > p{
+  margin-bottom: 1rem; 
 }
+
+.texto-container{
+  background: linear-gradient(rgba(0,20,20,0.5), rgba(0,40,50,0.5)), 
+              url(https://images.unsplash.com/photo-1492496913980-501348b61469?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80) no-repeat no-repeat center right,
+              #f4f4f4;
+  padding: 3rem;
+}
+
+.texto-container .texto p{
+  color: white;
+  font-weight: 300;
+  line-height: 1.6rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+}  
+
+.autor{
+  color: white;
+  padding: 3rem 0;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+}
+
+.autor img{
+  border-radius: 50px;
+  height: 100px;
+}
+
+.autor .nome{
+  font-weight: bold;
+}
+
+
+@media screen and (min-width: 960px){
+  .apresentacao .titulo{
+    margin: 0 auto;
+    text-align: center;  
+    width: 60%;    
+  }
+
+  .apresentacao .titulo > h1{
+    margin-bottom: 4rem;  
+  }
+ 
+  .texto-container{
+    background-size: 40%;
+    padding: 6rem;
+  }
+
+  .texto-container .texto{
+    width: 50%;
+  }
+
+  .texto-container .texto p{
+    margin-bottom: 2rem;
+  }  
+  
+  .autor{
+    text-align: left;
+  }
+}
+

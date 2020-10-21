@@ -1,3 +1,4 @@
+
 function criarTabelaTetris()
 {
     let linhasTabela = Array.apply(null, Array(20)).map(() => {});
@@ -106,3 +107,4 @@ function movimentarPecasParaBaixo()
     bodyTabelaTetris.rows[linha+4].cells[4].innerHTML = pecaAntiga;
     bodyTabelaTetris.rows[linha].cells[4].innerHTML = null;
 }
+
