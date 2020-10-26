@@ -115,7 +115,7 @@ a{
   transform: translateY(-1.6rem) translateZ(0.0);
 }
 
-#teste{
+#linkCadastrar{
  
     color: rgba(0,0,0,0.7);
     font-size: 0.9rem;
@@ -148,6 +148,15 @@ a{
   margin-top: 1rem;
   padding: 0.6rem 4rem;
   text-transform: uppercase;
+}
+
+#backArrow{
+  background: url("../Images/left-arrow.png");
+  height: 64px;
+  width: 64px;
+  margin-top: 10px;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 

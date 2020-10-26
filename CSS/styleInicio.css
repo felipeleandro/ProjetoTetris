@@ -20,7 +20,7 @@ body{
   height: 100vh;
   font-family: 'Poppins', sans-serif;
 }
-.cadastro{
+.divCadastro{
   display: flex;
   align-items: flex-start;
   margin-top: 1rem;
@@ -38,7 +38,7 @@ body{
   display: block;
 
 }
-.hero{
+.divInicio{
   align-items: center;
   background: url(https://images.pexels.com/photos/1670977/pexels-photo-1670977.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) no-repeat no-repeat center center fixed;
   display: flex;
@@ -47,23 +47,23 @@ body{
   justify-content: center;  
 }
 
-.hero .mensagem{
+.divInicio .divMensagem{
   margin-bottom: 6rem;
   text-align: center;
   width: 60%;
   color: #f5f6fa;
 }
 
-.hero h1{
+.divInicio h1{
   font-size: 3rem;  
   text-align: center;
 }
 
-.hero p{
+.divInicio p{
   font-style: italic; 
 }
 
-.hero .btn{
+.divInicio .btn{
   background: #d63031;
   border-radius: 100px;
   color: white;
