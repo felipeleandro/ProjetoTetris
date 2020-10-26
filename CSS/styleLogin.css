@@ -16,6 +16,9 @@ body{
   display: flex;
   font-family: 'Nunito', sans-serif;
 }
+a{
+  text-decoration: none;
+}
 
 .container{
   background: url("../Images/backgroundlogin2.jpg") no-repeat no-repeat;
@@ -95,6 +98,7 @@ body{
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+  text-decoration: none;
 }
 
 .input-container input{
@@ -112,13 +116,16 @@ body{
 }
 
 #teste{
+ 
     color: rgba(0,0,0,0.7);
     font-size: 0.9rem;
     opacity: 1;
     transition: all ease-in-out .2s;
     transform: translateY(-1.6rem) translateZ(0.0);
-    margin-top: 2.5rem;
+    margin-top: 2.6rem;
     align-self: center;
+    text-decoration: none;
+
   }
 
 .input-container ::placeholder{
