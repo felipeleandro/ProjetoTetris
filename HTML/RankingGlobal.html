@@ -1,87 +1,93 @@
 <!DOCTYPE html>
- <html lang="pt-br">   
+<html lang="pt-br">
     <head>
-        <link rel="stylesheet" href="..\CSS\PaginaJogoTetris.css">
-		<link rel="stylesheet" href="..\CSS\styleRankingGlobal.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">	
+        <link rel="stylesheet" href="..\CSS\styleJogoTetris.css">
+        <link rel="stylesheet" href="..\CSS\styleRankingGlobal.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+		<link rel="stylesheet" src="http://maxcdn.bootstrapcdn.com/font-awesome/6.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/css/fontawesome.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/css/brands.css">
+		<link rel="stylesheet" href="https://fontawesome.com/icons/css/solid.css">
+		
         <title>
             Projeto Tetris - Ranking Global
-        </title>
-		<meta charset="utf-8">
+		</title>
+		
+        <meta charset="utf-8">
     </head>
- <body>
-	<header>
-		<div id="logo-menu-container">
-		  <a href="#" id="menu-button"><i class="fa fa-bars"></i></a> 
-
-			<div id="logo">
-				<h1>Tetris</h1>
-			</div>
-		 
-		    <div class = "container-information">
-				<p class="text">Tempo: 00:02</p>
-				<p class="text">Pontuação: 20</p>                    
-				<p class="text" >Linhas Eliminadas: 5</p>
-				<p class="text">Dificuldade: 10</p>
-			</div>
-		</div>    
-		<div id="menu-container">     
-			<div id="menu" class="active">  
-		   
-				<nav>
-					<ul> 
-						<li ><a href="#"><i class="fa fa-home"></i><span>Perfil</span></a></li>
-						<li><a href="PaginaJogoTetris.html"><i class="fa fa-list-alt"></i><span>Tela Inicial</span></a></li> 
-						<li class="active"><a href="RankingGlobal.html"><i class="fas fa-medal"></i><span>Ranking Global</span></a></li>
-						<li><a href="PaginaInicial.html"><i class="fas fa-sign-out-alt"></i><span>Sair</span></a></li>
-					</ul>
-				</nav>   
+    <body>
+        <header>
+            <div id="logo-menu-container">
+				<a href="#" id="menu-button"><i class="fa fa-bars"></i></a>
 				
-				<i id="menu-retract" class="fas fa-angle-left"></i>
+                <div id="logo">
+                    <h1>Tetris</h1>
+				</div>
+				
+                <div class = "container-information">
+                    <p class="text">Tempo: 00:02</p>
+                    <p class="text">Pontuação: 20</p>
+                    <p class="text" >Linhas Eliminadas: 5</p>
+                    <p class="text">Dificuldade: 10</p>
+				</div>
+				
 			</div>
-		</div>  
-	</header>
-	
-	<main>
-        <div class="cont">
-			<div class="container_right">
-				 <h2>Ranking Global</h2>
-			</div> 
-        </div> 
+			
+            <div id="menu-container">
+                <div id="menu" class="active">
+                    <nav>
+                        <ul>
+                            <li ><a href="#"><i class="fa fa-home"></i><span>Perfil</span></a></li>
+                            <li><a href="PaginaJogoTetris.html"><i class="fa fa-list-alt"></i><span>Tela Inicial</span></a></li>
+                            <li class="active"><a href="RankingGlobal.html"><i class="fas fa-medal"></i><span>Ranking Global</span></a></li>
+                            <li><a href="PaginaInicial.html"><i class="fas fa-sign-out-alt"></i><span>Sair</span></a></li>
+                        </ul>
+                    </nav>
+                    <i id="menu-retract" class="fas fa-angle-left"></i>
+                </div>
+            </div>
+		</header>
 		
-		<div class="cont_rankingGlobal">
-            <table class="rankingGlobal">
-				<tr>
-					<th>Nome do jogador</th>
-					<th>Nível</th>
-					<th>Tempo da partida</th>
-				</tr>
-				<tr>
-					<td>jogador1</td>
-					<td> 6</td>
-					<td>30 min</td>
-				</tr>
-				<tr>
-					<td>jogador2</td>
-					<td> 4</td>
-					<td>20 min</td>
-				</tr>
-				<tr>
-					<td>jogador3</td>
-					<td> 4</td>
-					<td>30 min</td>
-				</tr>
-			</table>
-        </div>   
+        <main>
+            <div class="cont">
+                <div class="container_right">
+                    <h2>Ranking Global</h2>
+                </div>
+			</div>
+			
+            <div class="cont_rankingGlobal">
+                <table class="rankingGlobal">
+                    <tr>
+                        <th>Nome do jogador</th>
+                        <th>Pontuação</th>
+                        <th>Nível</th>
+                        <th>Tempo da partida</th>
+                    </tr>
+                    <tr>
+                        <td>Jogador 1</td>
+                        <td> 500</td>
+                        <td> 6</td>
+                        <td>30 min</td>
+                    </tr>
+                    <tr>
+                        <td>Jogador 2</td>
+                        <td> 750</td>
+                        <td> 4</td>
+                        <td>20 min</td>
+                    </tr>
+                    <tr>
+                        <td>Jogador 3</td>
+                        <td> 1000</td>
+                        <td> 4</td>
+                        <td>30 min</td>
+                    </tr>
+                </table>
+            </div>
+		</main>
 		
-	</main>	
-
-   
-   <link src="http://maxcdn.bootstrapcdn.com/font-awesome/6.0/css/font-awesome.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">	
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
-   <link href="https://use.fontawesome.com/css/fontawesome.css" rel="stylesheet">
-   <link href="https://use.fontawesome.com/css/brands.css" rel="stylesheet">
-   <link href="https://fontawesome.com/icons/css/solid.css" rel="stylesheet">
-  </body>  
+        
+		
+    </body>
 </html>
