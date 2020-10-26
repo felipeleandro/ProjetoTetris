@@ -30,6 +30,15 @@ body{
   transition: all cubic-bezier(0.50, 0.04, 0.10, 0.8) 0.5s;
 }
 
+#backArrow{
+  background: url("../Images/left-arrow.png");
+  height: 64px;
+  width: 64px;
+  margin-top: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
 .container.active{
   background-position: 40% center; 
 }
