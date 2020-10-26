@@ -24,8 +24,12 @@ body{
   display: flex;
   align-items: flex-start;
   margin-top: 1rem;
-  margin-left: 81rem;
+  margin-left: 65rem;
   margin-bottom:15rem ;
+  background-color: #d63031;
+  padding-right: 10rem;
+  font-size: 20pt;
+  opacity: 90%;
 }
 .login{
   margin-right: 2rem;
