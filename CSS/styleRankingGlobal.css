@@ -1,0 +1,30 @@
+table .rankingGlobal{
+	border-collapse: collapse;
+	width: 100%;
+	margin: 2en 2en;
+	float: left;
+}
+.rankingGlobal tr:nth-child(even){
+	background-color: white;
+}
+
+.rankingGlobal td{
+	padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 12pt;
+}
+
+.rankingGlobal th{
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-right: 10px;
+	font-size: 18pt;
+}
+
+.cont_rankingGlobal{
+	position: relative;
+	top: 80px;
+  right: 80px;
+  width: 40en;
+	
+}
