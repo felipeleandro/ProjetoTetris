@@ -1,34 +1,172 @@
-table .rankingGlobal{
-	border-collapse: collapse;
-	width: 100%;
-	margin: 2en 2en;
-	float: left;
-}
-.rankingGlobal tr:nth-child(even){
-	background-color: white;
+table .rankingGlobal {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 2en 2en;
+    float: left;
 }
 
-.rankingGlobal td{
-	padding-top: 12px;
-  padding-bottom: 12px;
-  font-size: 12pt;
+.rankingGlobal tr:nth-child(even) {
+    background-color: white;
 }
 
-.rankingGlobal th{
-	padding-top: 12px;
-	padding-bottom: 12px;
-	padding-right: 10px;
-	font-size: 18pt;
+.rankingGlobal td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 12pt;
+    margin-left: 0.2rem;
+    padding-right: 0.2rem;
 }
 
-.cont_rankingGlobal{
-	position: relative;
-	top: 80px;
-  right: 80px;
-  width: 40en;
-	
+.cont_rankingGlobal {
+    display: flex;
+    margin-top: 1rem;
 }
 
+.cont_rankingGlobal th {
+    font-size: 1.25rem;
+    padding: 0.5rem;
+}
+
+.container-information {
+    display: flex;
+    flex-direction: row;
+    margin-left: 72rem;
+    color: var(--primary-color-lighten);
+}
+
+header {
+    align-items: center;
+    background: var(--header-background);
+    box-shadow: var(--border-shadow);
+    display: flex;
+    height: var(--header-height);
+    width: 100%;
+}
+
+header #title-header {
+    margin-right: calc(var(--default-padding)*2);
+    text-transform: uppercase;
+    width: 40vw;
+    color: var(--primary-color-lighten);
+    font-size: 0.8rem;
+}
+
+header #menu-button {
+    color: var(--primary-color);
+    font-size: 1.75em;
+    margin-right: calc(var(--default-padding) / 2);
+}
+
+#logo-menu-container {
+    align-items: center;
+    display: flex;
+    padding-left: var(--default-padding);
+    width: 78.5rem;
+}
+
+#menu-retract {
+    transition: all ease-in-out .2s;
+}
+
+#menu.active #menu-retract {
+    color: #ffffff;
+    cursor: pointer;
+    bottom: calc(var(--default-padding)/2);
+    font-size: 1.5rem;
+    left: calc(var(--opened-menu-width) - var(--default-padding) + 0.5rem);
+    position: fixed;
+}
+
+#menu.retracted #menu-retract {
+    color: #ffffff;
+    cursor: pointer;
+    bottom: calc(var(--default-padding)/2);
+    font-size: 1.5rem;
+    left: 1.5em;
+    position: fixed;
+    transform: rotate(180deg);
+}
+
+#menu.retracted nav {
+    width: var(--retracted-menu-width);
+    opacity: 1;
+    height: calc(100vh - var(--header-height));
+}
+
+#menu.retracted nav span {
+    display: none;
+}
+
+#menu,
+#busca-container,
+nav {
+    overflow: hidden;
+    transition: all ease-in-out 0.2s;
+    width: 0;
+}
+
+#menu.active,
+#menu.active nav,
+#menu.active {
+    opacity: 1;
+    width: var(--opened-menu-width);
+}
+
+nav {
+    background: var(--primary-color);
+    height: calc(100vh - var(--header-height));
+    left: 0;
+    overflow: hidden;
+    padding-top: var(--search-bar-height);
+    position: fixed;
+    top: calc(var(--header-height));
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav i {
+    color: inherit;
+    margin-right: calc(var(--default-padding) / 2);
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav li {
+    align-items: center;
+    display: flex;
+    height: var(--menu-item-height);
+    padding: 0 var(--default-padding);
+}
+
+nav a {
+    color: var(--text-color-ligthen);
+    font-size: 1em;
+}
+
+nav a.active {
+    color: var(--header-background);
+    font-weight: bold;
+}
+
+nav a.active i {
+    color: var(--primary-color-lighten);
+}
+
+nav .active {
+    border-left: solid 0.25rem var(--header-background);
+}
+
+nav .active>a {
+    color: var(--header-background);
+    left: -4px;
+    position: relative;
+}
+
+<<<<<<< Updated upstream
 input[type=text],input[type=password] {
   width: 100%;
   padding: 12px 15px;
@@ -39,3 +177,47 @@ input[type=text],input[type=password] {
   box-sizing: border-box;
 }
 
+=======
+main {
+    display: flex;
+    padding: var(--default-padding);
+    position: absolute;
+    top: var(--header-height);
+}
+
+@media screen and (min-width: 800px) {
+     :root {
+        --opened-menu-width: 18vw;
+        --busca-container-width: 60vw;
+    }
+    #busca-container {
+        align-items: center;
+        background: var(--header-background);
+        flex: 1;
+        justify-content: flex-start;
+        position: absolute;
+        left: 30vw;
+        opacity: 1;
+        top: 0;
+        width: var(--busca-container-width);
+    }
+    #busca-container input[type="search"] {
+        flex: 1;
+        width: 100vw !important;
+    }
+    #menu.active #busca-container {
+        width: var(--busca-container-width);
+    }
+    #busca-container input[type="search"]:focus~i {
+        right: calc(var(--default-padding) / 2);
+    }
+    nav {
+        padding-top: var(--default-padding);
+        top: var(--header-height);
+    }
+    main {
+        left: var(--opened-menu-width);
+        width: calc(100vw - var(--opened-menu-width));
+    }
+}
+>>>>>>> Stashed changes
