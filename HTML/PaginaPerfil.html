@@ -1,107 +1,103 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <link rel="stylesheet" href="..\CSS\styleJogoTetris.css">
-        <link rel="stylesheet" href="..\CSS\styleRankingGlobal.css">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
-		<link rel="stylesheet" src="http://maxcdn.bootstrapcdn.com/font-awesome/6.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/css/fontawesome.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/css/brands.css">
-		<link rel="stylesheet" href="https://fontawesome.com/icons/css/solid.css">
-		
-        <title>Perfil
-		</title>
-		
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <header>
-            <div id="logo-menu-container">
-				<a href="#" id="menu-button"><i class="fa fa-bars"></i></a>
-				
-                <div id="logo">
-                    <h1>Tetris</h1>
-				</div>
-				
-                <div class = "container-information">
-                    <p class="text">Tempo: 00:02</p>
-                    <p class="text">Pontuação: 20</p>
-                    <p class="text" >Linhas Eliminadas: 5</p>
-                    <p class="text">Dificuldade: 10</p>
-				</div>
-				
-			</div>
-			
-            <div id="menu-container">
-                <div id="menu" class="active">
-                    <nav>
-                        <ul>
-                            <li class="active"><a href="#"><i class="fa fa-home"></i><span>Perfil</span></a></li>
-                            <li><a href="PaginaJogoTetris.html"><i class="fa fa-list-alt"></i><span>Tela Inicial</span></a></li>
-                            <li ><a href="RankingGlobal.html"><i class="fas fa-medal"></i><span>Ranking Global</span></a></li>
-                            <li><a href="PaginaInicial.html"><i class="fas fa-sign-out-alt"></i><span>Sair</span></a></li>
-                        </ul>
-                    </nav>
-                    <i id="menu-retract" class="fas fa-angle-left"></i>
-                </div>
+
+<head>
+    <link rel="stylesheet" href="..\CSS\stylePerfil.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.1/css/all.css">    
+    
+    <title>
+        Projeto Tetris - SI401A
+    </title>
+</head>
+
+<body>
+    <header>
+        <div id="logo-menu-container">
+            <a href="#" id="menu-button"><i class="fa fa-bars"></i></a>
+
+            <div id="title-header">
+                <h1>Tetris</h1>
             </div>
-		</header>
-		
-        <main>
-            <div class="cont">
-                <div class="container_right">
-                    <h2>Editar Perfil</h2>
-                </div>
-			</div>
-			
-            <div class="cont_rankingGlobal">
-                <form>
-					
-					
-                    <div class="input-container">
-						<label for="nome">Nome Completo</label>
-                        <input type="text" id="nome" readonly="true" placeholder="Nome Completo" required/>
-                        
-					</div>
-					
-                    <div class="input-container">
-						<label for="dt_nasc">Data de nascimento</label>
-                        <input type="text" readonly="true" id="dt_nasc" placeholder="Data de nascimento" required/>
-                        
-					</div>
-					
-                    <div class="input-container">
-						<label for="telefone">Telefone</label>
-                        <input type="text" id="telefone" placeholder="Telefone" required/>
-                        
-					</div>
-					
-                    <div class="input-container">
-						<label for="cpf">CPF</label>
-                        <input type="text" id="cpf" readonly="true" placeholder="CPF" required/>
-                        
-					</div>
-					
-                    <div class="input-container">
-						 <label for="email">E-mail</label>
-                        <input type="text" id="email" placeholder="E-mail" required/>
-                       
-					</div>
-					
-                    <div class="input-container">
-						<label for="password">Senha</label>
-                        <input type="password" id="password" placeholder="Senha" required/>
-                        
-					</div>
-					
-                    <input type="button" value="Cadastrar" class="button" onclick="location.href='PaginaJogoTetris.html'"/>
-                </form>
+
+            <div class="container-information">
+                <h2>Perfil</h1>
             </div>
-		</main>
-		
-        
-		
-    </body>
+
+        </div>
+
+        <div id="menu-container">
+            <div id="menu" class="active">
+                <nav>
+                    <ul>
+                        <li><a href="PaginaJogoTetris.html"><i class="fas fa-gamepad"></i><span>Jogo</span></a></li>
+                        <li><a href="PaginaInicial.html"><i class="fa fa-home"></i><span>Tela inicial</span></a></li>
+                        <li class="active"><a href="PaginaPerfil.html"><i class="fas fa-user-circle"></i><span>Perfil</span></a></li>
+                        <li><a href="RankingGlobal.html"><i class="fas fa-medal"></i><span>Ranking Global</span></a></li>
+                        <li><a href="PaginaLogin.html"><i class="fas fa-sign-out-alt"></i><span>Sair</span></a></li>
+                    </ul>
+                </nav>
+
+                <i id="menu-retract" class="fas fa-angle-left"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container-dados">
+            <div>
+                <i class="fas fa-user-circle"></i>
+                <p>Felipe Souza</p>
+                <p>22/10/2000</p>
+                <p>(19)9956-3472</p>
+                <p>08963754231</p>
+                <p>Felipe@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="container-ranking-pai">
+            <h1>Controle de acesso</h1>
+            <form>                
+                <div class="input-container-1">
+                    <div class="input-container">
+                        <input type="text" id="user" placeholder="Nome Completo" required />
+                        <label for="user">Nome Completo</label>
+                    </div>
+
+                    <div class="input-container">
+                        <input type="text" id="dataNascimento" placeholder="Data de nascimento" readonly="true" required />
+                        <label for="dataNascimento">Data de nascimento</label>
+                    </div>
+
+                    <div class="input-container">
+                        <input type="text" id="telefone" placeholder="Telefone" required />
+                        <label for="telefone">Telefone</label>
+                    </div>
+
+                    <div class="input-container">
+                        <input type="text" id="cpf" placeholder="CPF" readonly="true" required />
+                        <label for="cpf">CPF</label>
+                    </div>
+                </div>
+
+                <div class="input-container-2">
+                    <div class="input-container">
+                        <input type="text" id="email" placeholder="E-mail" required />
+                        <label for="email">E-mail</label>
+                    </div>
+
+                    <div class="input-container">
+                        <input type="password" id="username" placeholder="Username" readonly="true" required />
+                        <label for="username">Senha</label>
+                    </div>
+                    <div class="input-container">
+                        <input type="password" id="password" placeholder="Senha" required />
+                        <label for="password">Senha</label>
+                        <input type="button" value="Salvar" class="button" onclick="location.href='PaginaJogoTetris.html'" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</body>
+
 </html>

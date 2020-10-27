@@ -3,6 +3,7 @@ table .rankingGlobal {
     width: 100%;
     margin: 2en 2en;
     float: left;
+    border: 1px solid black;    
 }
 
 .rankingGlobal tr:nth-child(even) {
@@ -24,7 +25,7 @@ table .rankingGlobal {
 
 .cont_rankingGlobal th {
     font-size: 1.25rem;
-    padding: 0.5rem;
+    padding: 0.5rem;    
 }
 
 .container-information {
