@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" href="..\CSS\styleJogoTetris.css">    
+    <link rel="stylesheet" href="..\CSS\styleJogoTetris.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+    <script type="text/javascript" src="..\JavaScript\PaginaJogoTetris.js"></script>
 
     <title>
         Tetris
     </title>
 </head>
 
-<body>
+<body onkeypress="movimentarPecasPeloTeclado()">
     <header>
         <div id="header-menu-container">
             <a href="#" id="menu-button"><i class="fa fa-bars"></i></a>
@@ -45,7 +46,9 @@
 
     <main>
         <div class="container-pai">
-            <div class="container-jogo"> </div>
+            <div id="divTabelaTetris" class="container-jogo"">
+                <button id="btnIniciarJogo" onclick="criarTabelaTetris()">Jogar</button>
+            </div>
 
             <div>
                 <div class="container-ranking-pai">
@@ -59,7 +62,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="container-ranking-pai">
                     <div class="container-ranking">
                         <ul>

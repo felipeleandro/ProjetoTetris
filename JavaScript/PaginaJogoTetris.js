@@ -1,6 +1,42 @@
+class Peca
+{
+    constructor(linha, coluna)
+    {
+      this.linha = linha;
+      this.coluna = coluna;
+    }
+}
+
+class Pecas 
+{
+    constructor()
+    {
+      this.pecas = []
+    }
+
+    newPeca(linha, celula){
+        let peca = new Peca(linha, celula);
+        this.pecas.push(peca);
+        return peca;
+    }
+
+    retornarTodasPecas(){
+        return this.pecas;
+    }
+
+    quantidadePecas(){
+      return this.pecas.length;
+  }
+}
+
+document.onkeydown = function(e) { movimentarPecas(e) };
+
+let pecas = new Pecas();
 
 function criarTabelaTetris()
 {
+    document.getElementById("btnIniciarJogo").style.display = "none";
+
     let linhasTabela = Array.apply(null, Array(20)).map(() => {});
     let colunasTabela = Array.apply(null, Array(10)).map(() => {});
 
@@ -22,12 +58,21 @@ function criarTabelaTetris()
     table.appendChild(body);
     
     document.getElementById('divTabelaTetris').appendChild(table);
+
+    adicionarPecasTabela();    
+
+    // BOTÃO PARA BAIXO
+    var keyboardEvent = new KeyboardEvent("keydown", { keyCode: 40 });    
+    
+    //setInterval(function(){ movimentarPecas(keyboardEvent)}, 1000);
 }
 
 function adicionarPecasTabela()
 {
-    let numeroPeca = Math.floor(Math.random() * 7) + 1;
-    numeroPeca = 1;
+    let numeroPeca = Math.floor(Math.random() * 7) + 1;   
+    numeroPeca = 2;
+
+    pecas.pecas = [];
 
     let totalPecas = [];
     for (let qtdPecas = 0; qtdPecas < 4; qtdPecas++)
@@ -39,7 +84,7 @@ function adicionarPecasTabela()
         totalPecas[qtdPecas].src="..\\Images\\Peca.png";
     }
 
-    let bodyTabelaTetris = document.getElementById('bodyTabelaTetris');
+    let bodyTabelaTetris = document.getElementById('bodyTabelaTetris');    
 
     switch(numeroPeca) {
         case 1:
@@ -47,30 +92,55 @@ function adicionarPecasTabela()
             bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[1]);
             bodyTabelaTetris.rows[2].cells[4].appendChild(totalPecas[2]);
             bodyTabelaTetris.rows[3].cells[4].appendChild(totalPecas[3]);
+
+            pecas.newPeca(0,4);
+            pecas.newPeca(1,4);
+            pecas.newPeca(2,4);
+            pecas.newPeca(3,4);
             break;
         case 2:
             bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
             bodyTabelaTetris.rows[0].cells[5].appendChild(totalPecas[1]);
             bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[2]);
             bodyTabelaTetris.rows[1].cells[5].appendChild(totalPecas[3]);
+
+            pecas.newPeca(0,4);
+            pecas.newPeca(0,5);
+            pecas.newPeca(1,4);
+            pecas.newPeca(1,5);
             break;
         case 3:
             bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
             bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[1]);
             bodyTabelaTetris.rows[2].cells[4].appendChild(totalPecas[2]);
             bodyTabelaTetris.rows[2].cells[5].appendChild(totalPecas[3]);
+
+            pecas.newPeca(0,4);
+            pecas.newPeca(1,4);
+            pecas.newPeca(2,4);
+            pecas.newPeca(2,5);
             break;
         case 4:
             bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
             bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[1]);
             bodyTabelaTetris.rows[2].cells[4].appendChild(totalPecas[2]);
             bodyTabelaTetris.rows[2].cells[3].appendChild(totalPecas[3]);
+
+            pecas.newPeca(0,4);
+            pecas.newPeca(1,4);
+            pecas.newPeca(2,4);
+            pecas.newPeca(2,3);
             break;
         case 5:
             bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
             bodyTabelaTetris.rows[1].cells[3].appendChild(totalPecas[1]);
             bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[2]);
             bodyTabelaTetris.rows[1].cells[5].appendChild(totalPecas[3]);
+
+            pecas.newPeca(0,4);
+            pecas.newPeca(1,3);
+            pecas.newPeca(1,4);
+            pecas.newPeca(1,5);
             break;
         case 6:
             let imgPeca4 = document.createElement('img');
@@ -81,31 +151,105 @@ function adicionarPecasTabela()
             bodyTabelaTetris.rows[1].cells[3].appendChild(totalPecas[2]);
             bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[3]);
             bodyTabelaTetris.rows[1].cells[5].appendChild(imgPeca4);
+
+            pecas.newPeca(0,3);
+            pecas.newPeca(0,5);
+            pecas.newPeca(1,3);
+            pecas.newPeca(1,4);
+            pecas.newPeca(1,5);
             break;        
         case 7:
             bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);            
-            break;        
-      }
-
-
-      return numeroPeca;
+            pecas.newPeca(0,4);
+            break;
+      }     
+      
+      pecas.retornarTodasPecas().reverse();
+      return pecas;
 }
 
-function movimentarPecasParaBaixo()
+function movimentarPecas(e)
 {
-    let bodyTabelaTetris = document.getElementById('tableTabelaTetris');
+  let bodyTabelaTetris = document.getElementById('tableTabelaTetris');    
+  let pecaChegouFim = false;
+  
+  if (e.keyCode == 37 && pecas.pecas[0].coluna > pecas.pecas[1].coluna)  
+    pecas.retornarTodasPecas().reverse();
+  
+  if (e.keyCode == 39 && pecas.pecas[0].coluna < pecas.pecas[1].coluna)  
+    pecas.retornarTodasPecas().reverse();
 
-    let linha = 0;
-    let pecaAntiga = bodyTabelaTetris.rows[linha].cells[4].innerHTML;
+  if (e.keyCode == 40 && pecas.pecas[1].linha < pecas.pecas[2].linha)  
+  {
+    console.log("test")  
+    pecas.retornarTodasPecas().reverse();
+  }
     
-    while(pecaAntiga == "")
-    {
-        linha++;
-        pecaAntiga = bodyTabelaTetris.rows[linha].cells[4].innerHTML;        
+  for (let qtdPecas = 0; qtdPecas < pecas.quantidadePecas(); qtdPecas++)
+  {    
+    let peca = pecas.pecas[qtdPecas];
+    
+    let linhaAntiga = peca.linha;
+    let colunaAntiga = peca.coluna;
+
+    let linhaNova = -1;
+    let colunaNova = -1;
+
+    switch (e.keyCode)
+    { 
+      case 37: 
+        linhaNova = linhaAntiga;
+        colunaNova = colunaAntiga - 1;
+        break;               
+      case 39: 
+        linhaNova = linhaAntiga;
+        colunaNova = colunaAntiga + 1
+        break; 
+      case 40:       
+        linhaNova = linhaAntiga + 1;
+        colunaNova = colunaAntiga;
+        break;
+      default:
+        return;        
     }
 
-    bodyTabelaTetris.rows[linha+4].cells[4].innerHTML = pecaAntiga;
-    bodyTabelaTetris.rows[linha].cells[4].innerHTML = null;
+    console.log(linhaNova + " " + colunaNova);
+
+    if (!pecaChegouFim)
+      pecaChegouFim = linhaNova == 19;
+
+    if ((linhaNova < 20) && (colunaNova >= 0 && colunaNova < 10))
+    {
+      console.log("teste");
+      let pecaHTML = bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].innerHTML;      
+      
+      if (bodyTabelaTetris.rows[linhaNova].cells[colunaNova].innerHTML == "")
+      {
+        bodyTabelaTetris.rows[linhaNova].cells[colunaNova].innerHTML = pecaHTML;
+        bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].innerHTML = null;
+
+        peca.linha = linhaNova;
+        peca.coluna = colunaNova;
+
+        console.log('A')
+      }
+      else if (e.keyCode == 40)
+      {
+        console.log('B')
+        pecaChegouFim = true;
+      }
+      else
+      {
+        break;
+      }
+    }
+  }
+
+  if (pecaChegouFim)
+  {
+    console.log("lol")
+    adicionarPecasTabela();      
+  }
 }
 
 class AppLayout{
@@ -116,8 +260,8 @@ class AppLayout{
       this.menuButton = document.querySelector(props.menuButton);
       this.menuRetractionButton = document.querySelector(props.menuRetractionButton);
        
-      this.menuButton.addEventListener('click', () => this.toggleMenu()); 
-      this.menuRetractionButton.addEventListener('click', () => this.retractMenu()); 
+      //this.menuButton.addEventListener('click', () => this.toggleMenu()); 
+      //this.menuRetractionButton.addEventListener('click', () => this.retractMenu()); 
     } 
   
     toggleMenu(){
@@ -166,6 +310,3 @@ class AppLayout{
     menuButton: '#menu-button',
     menuRetractionButton: '#menu-retract'
   });
-  
-  
-

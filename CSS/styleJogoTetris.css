@@ -48,17 +48,45 @@ a {
     display: flex;
 }
 
-.container-jogo {
-    background: url("https://i0.wp.com/www.selectgame.com.br/wp-content/uploads/2019/08/cropped-Tetris-Imagem.jpg?fit=1200%2C675&ssl=1") no-repeat no-repeat;
+#btnIniciarJogo{
+    background: #d63031;
+    border-radius: 100px;
+    color: white;
+    display: block;
+    padding: 1rem 3rem;
+    text-decoration: none;
+    margin-bottom: 5rem;    
+}
+
+#divTabelaTetris {
     background-position: 0% center;
     box-shadow: 0px 5px 20px -2px rgba(0, 0, 0, 0.3);
     display: flex;
-    height: 82vh;
+    height: 80vh;
     margin: auto;
     overflow: hidden;
     width: 40vw;
     position: relative;
     transition: all cubic-bezier(0.50, 0.04, 0.10, 0.8) 0.5s;
+    align-items: center;
+    justify-content: center;
+}
+
+#bodyTabelaTetris{
+    height: 50vh;
+}
+
+table, th, td {
+    margin: auto;
+    border: 1px solid white;
+    border-collapse: collapse;
+    position: relative;
+}
+
+th, td{
+    width: 25px;
+    height: 25px;
+    background-color: rgb(23, 42, 60);
 }
 
 .container-information {
