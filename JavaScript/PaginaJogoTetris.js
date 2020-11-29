@@ -39,6 +39,9 @@ let pecas = new Pecas();
 let fimDeJogo = false;
 let myTimer = null;
 let tabuleiroGirado = false;
+let pontuacaoTotal = 0;
+let qtdLinhasEliminadasTotal = 0;
+let nivelTotal = 1;
 
 function criarTabelaTetris()
 {
@@ -68,18 +71,18 @@ function criarTabelaTetris()
 
     document.onkeydown = function(e) { movimentarPecas(e) };
 
-    adicionarPecasTabela();    
+    adicionarPecasTabela();
+    contabilizarTempoPartida();
 
     // BOTÃO PARA BAIXO
-    var keyboardEvent = new KeyboardEvent("keydown", { keyCode: 40 });    
-    
-    //myTimer = setInterval(function(){ movimentarPecas(keyboardEvent)}, 1000);
+    var keyboardEvent = new KeyboardEvent("keydown", { keyCode: 40 });
+    //myTimer = setInterval(function(){ movimentarPecas(keyboardEvent)}, 900);
 }
 
 function adicionarPecasTabela()
 {
-    let numeroPeca = Math.floor(Math.random() * 7) + 1;   
-    numeroPeca = 1;
+    let numeroPeca = Math.floor(Math.random() * 7) + 1;
+    numeroPeca = 3;
 
     pecas.pecas = [];
 
@@ -95,116 +98,250 @@ function adicionarPecasTabela()
 
     let bodyTabelaTetris = document.getElementById('bodyTabelaTetris');    
 
-    switch(numeroPeca) {
-        case 1:
-            bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
-            bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[1]);
-            bodyTabelaTetris.rows[2].cells[4].appendChild(totalPecas[2]);
-            bodyTabelaTetris.rows[3].cells[4].appendChild(totalPecas[3]);
+    switch(numeroPeca)
+    {
+      case 1:
+        if (tabuleiroGirado)
+        {            
+          bodyTabelaTetris.rows[19].cells[4].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[18].cells[4].appendChild(totalPecas[1]);
+          bodyTabelaTetris.rows[17].cells[4].appendChild(totalPecas[2]);
+          bodyTabelaTetris.rows[16].cells[4].appendChild(totalPecas[3]);
 
-            bodyTabelaTetris.rows[0].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[1].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[2].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[3].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[19].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[18].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[17].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[16].cells[4].classList.add('blockPecaAtual');
 
-            pecas.newPeca(0,4,1);
-            pecas.newPeca(1,4,1);
-            pecas.newPeca(2,4,1);
-            pecas.newPeca(3,4,1);
-            break;
-        case 2:
-            bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
-            bodyTabelaTetris.rows[0].cells[5].appendChild(totalPecas[1]);
-            bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[2]);
-            bodyTabelaTetris.rows[1].cells[5].appendChild(totalPecas[3]);
+          pecas.newPeca(19,4,1);
+          pecas.newPeca(18,4,1);
+          pecas.newPeca(17,4,1);
+          pecas.newPeca(16,4,1);
+        }
+        else
+        {
+          bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[1]);
+          bodyTabelaTetris.rows[2].cells[4].appendChild(totalPecas[2]);
+          bodyTabelaTetris.rows[3].cells[4].appendChild(totalPecas[3]);
 
-            bodyTabelaTetris.rows[0].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[0].cells[5].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[1].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[1].cells[5].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[0].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[1].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[2].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[3].cells[4].classList.add('blockPecaAtual');
 
-            pecas.newPeca(0,4,2);
-            pecas.newPeca(0,5,2);
-            pecas.newPeca(1,4,2);
-            pecas.newPeca(1,5,2);
-            break;
-        case 3:
-            bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
-            bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[1]);
-            bodyTabelaTetris.rows[2].cells[4].appendChild(totalPecas[2]);
-            bodyTabelaTetris.rows[2].cells[5].appendChild(totalPecas[3]);
+          pecas.newPeca(0,4,1);
+          pecas.newPeca(1,4,1);
+          pecas.newPeca(2,4,1);
+          pecas.newPeca(3,4,1);
+        }
+        break;
+      case 2:
+        if (tabuleiroGirado)
+        {
+          bodyTabelaTetris.rows[19].cells[4].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[19].cells[5].appendChild(totalPecas[1]);
+          bodyTabelaTetris.rows[18].cells[4].appendChild(totalPecas[2]);
+          bodyTabelaTetris.rows[18].cells[5].appendChild(totalPecas[3]);
 
-            bodyTabelaTetris.rows[0].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[1].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[2].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[2].cells[5].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[19].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[19].cells[5].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[18].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[18].cells[5].classList.add('blockPecaAtual');
 
-            pecas.newPeca(0,4,3);
-            pecas.newPeca(1,4,3);
-            pecas.newPeca(2,4,3);
-            pecas.newPeca(2,5,3);
-            break;
-        case 4:
-            bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
-            bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[1]);
-            bodyTabelaTetris.rows[2].cells[4].appendChild(totalPecas[2]);
-            bodyTabelaTetris.rows[2].cells[3].appendChild(totalPecas[3]);
+          pecas.newPeca(19,4,2);
+          pecas.newPeca(19,5,2);
+          pecas.newPeca(18,4,2);
+          pecas.newPeca(18,5,2);
+        }
+        else
+        {
+          bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[0].cells[5].appendChild(totalPecas[1]);
+          bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[2]);
+          bodyTabelaTetris.rows[1].cells[5].appendChild(totalPecas[3]);
 
-            bodyTabelaTetris.rows[0].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[1].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[2].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[2].cells[3].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[0].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[0].cells[5].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[1].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[1].cells[5].classList.add('blockPecaAtual');
 
-            pecas.newPeca(0,4,4);
-            pecas.newPeca(1,4,4);
-            pecas.newPeca(2,4,4);
-            pecas.newPeca(2,3,4);
-            break;
-        case 5:
-            bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
-            bodyTabelaTetris.rows[1].cells[3].appendChild(totalPecas[1]);
-            bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[2]);
-            bodyTabelaTetris.rows[1].cells[5].appendChild(totalPecas[3]);
+          pecas.newPeca(0,4,2);
+          pecas.newPeca(0,5,2);
+          pecas.newPeca(1,4,2);
+          pecas.newPeca(1,5,2);
+        }
+        break;
+      case 3:
+        if (tabuleiroGirado)
+        {
+          bodyTabelaTetris.rows[19].cells[4].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[18].cells[4].appendChild(totalPecas[1]);
+          bodyTabelaTetris.rows[17].cells[4].appendChild(totalPecas[2]);
+          bodyTabelaTetris.rows[17].cells[5].appendChild(totalPecas[3]);
 
-            bodyTabelaTetris.rows[0].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[1].cells[3].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[1].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[1].cells[5].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[19].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[18].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[17].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[17].cells[5].classList.add('blockPecaAtual');
 
-            pecas.newPeca(0,4,5);
-            pecas.newPeca(1,3,5);
-            pecas.newPeca(1,4,5);
-            pecas.newPeca(1,5,5);
-            break;
-        case 6:
-            let imgPeca4 = document.createElement('img');
-            imgPeca4.src="..\\Images\\Pecas\\Peca6.png";
+          pecas.newPeca(19,4,3);
+          pecas.newPeca(18,4,3);
+          pecas.newPeca(17,4,3);
+          pecas.newPeca(17,5,3);
+        }
+        else
+        {
+          bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[1]);
+          bodyTabelaTetris.rows[2].cells[4].appendChild(totalPecas[2]);
+          bodyTabelaTetris.rows[2].cells[5].appendChild(totalPecas[3]);
 
-            bodyTabelaTetris.rows[0].cells[3].appendChild(totalPecas[0]);
-            bodyTabelaTetris.rows[0].cells[5].appendChild(totalPecas[1]);
-            bodyTabelaTetris.rows[1].cells[3].appendChild(totalPecas[2]);
-            bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[3]);
-            bodyTabelaTetris.rows[1].cells[5].appendChild(imgPeca4);
+          bodyTabelaTetris.rows[0].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[1].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[2].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[2].cells[5].classList.add('blockPecaAtual');
 
-            bodyTabelaTetris.rows[0].cells[3].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[0].cells[5].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[1].cells[3].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[1].cells[4].classList.add('blockPecaAtual');
-            bodyTabelaTetris.rows[1].cells[5].classList.add('blockPecaAtual');
+          pecas.newPeca(0,4,3);
+          pecas.newPeca(1,4,3);
+          pecas.newPeca(2,4,3);
+          pecas.newPeca(2,5,3);
+        }
+        break;
+      case 4:
+        if (tabuleiroGirado)
+        {
+          bodyTabelaTetris.rows[19].cells[4].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[18].cells[4].appendChild(totalPecas[1]);
+          bodyTabelaTetris.rows[17].cells[4].appendChild(totalPecas[2]);
+          bodyTabelaTetris.rows[17].cells[3].appendChild(totalPecas[3]);
 
-            pecas.newPeca(0,3,6);
-            pecas.newPeca(0,5,6);
-            pecas.newPeca(1,3,6);
-            pecas.newPeca(1,4,6);
-            pecas.newPeca(1,5,6);
-            break;        
-        case 7:
-            bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
-            bodyTabelaTetris.rows[0].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[19].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[18].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[17].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[17].cells[3].classList.add('blockPecaAtual');
 
-            pecas.newPeca(0,4,7);
-            break;
-      }     
+          pecas.newPeca(19,4,4);
+          pecas.newPeca(18,4,4);
+          pecas.newPeca(17,4,4);
+          pecas.newPeca(17,3,4);
+        }
+        else
+        {
+          bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[1]);
+          bodyTabelaTetris.rows[2].cells[4].appendChild(totalPecas[2]);
+          bodyTabelaTetris.rows[2].cells[3].appendChild(totalPecas[3]);
+
+          bodyTabelaTetris.rows[0].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[1].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[2].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[2].cells[3].classList.add('blockPecaAtual');
+
+          pecas.newPeca(0,4,4);
+          pecas.newPeca(1,4,4);
+          pecas.newPeca(2,4,4);
+          pecas.newPeca(2,3,4);
+        }
+        break;
+      case 5:
+        if (tabuleiroGirado)
+        {
+          bodyTabelaTetris.rows[19].cells[4].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[18].cells[3].appendChild(totalPecas[1]);
+          bodyTabelaTetris.rows[18].cells[4].appendChild(totalPecas[2]);
+          bodyTabelaTetris.rows[18].cells[5].appendChild(totalPecas[3]);
+
+          bodyTabelaTetris.rows[19].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[18].cells[3].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[18].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[18].cells[5].classList.add('blockPecaAtual');
+
+          pecas.newPeca(19,4,5);
+          pecas.newPeca(18,3,5);
+          pecas.newPeca(18,4,5);
+          pecas.newPeca(18,5,5);
+        }
+        else
+        {
+          bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[1].cells[3].appendChild(totalPecas[1]);
+          bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[2]);
+          bodyTabelaTetris.rows[1].cells[5].appendChild(totalPecas[3]);
+
+          bodyTabelaTetris.rows[0].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[1].cells[3].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[1].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[1].cells[5].classList.add('blockPecaAtual');
+
+          pecas.newPeca(0,4,5);
+          pecas.newPeca(1,3,5);
+          pecas.newPeca(1,4,5);
+          pecas.newPeca(1,5,5);
+        }
+        break;            
+      case 6:
+        let imgPeca4 = document.createElement('img');
+        imgPeca4.src="..\\Images\\Pecas\\Peca6.png";
+
+        if (tabuleiroGirado)
+        {
+          bodyTabelaTetris.rows[19].cells[3].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[19].cells[5].appendChild(totalPecas[1]);
+          bodyTabelaTetris.rows[18].cells[3].appendChild(totalPecas[2]);
+          bodyTabelaTetris.rows[18].cells[4].appendChild(totalPecas[3]);
+          bodyTabelaTetris.rows[18].cells[5].appendChild(imgPeca4);
+
+          bodyTabelaTetris.rows[19].cells[3].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[19].cells[5].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[18].cells[3].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[18].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[18].cells[5].classList.add('blockPecaAtual');
+
+          pecas.newPeca(19,3,6);
+          pecas.newPeca(19,5,6);
+          pecas.newPeca(18,3,6);
+          pecas.newPeca(18,4,6);
+          pecas.newPeca(18,5,6);
+        }
+        else
+        {
+          bodyTabelaTetris.rows[0].cells[3].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[0].cells[5].appendChild(totalPecas[1]);
+          bodyTabelaTetris.rows[1].cells[3].appendChild(totalPecas[2]);
+          bodyTabelaTetris.rows[1].cells[4].appendChild(totalPecas[3]);
+          bodyTabelaTetris.rows[1].cells[5].appendChild(imgPeca4);
+
+          bodyTabelaTetris.rows[0].cells[3].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[0].cells[5].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[1].cells[3].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[1].cells[4].classList.add('blockPecaAtual');
+          bodyTabelaTetris.rows[1].cells[5].classList.add('blockPecaAtual');
+
+          pecas.newPeca(0,3,6);
+          pecas.newPeca(0,5,6);
+          pecas.newPeca(1,3,6);
+          pecas.newPeca(1,4,6);
+          pecas.newPeca(1,5,6);
+        }
+        break;        
+      case 7:
+        if (tabuleiroGirado)
+        {
+          bodyTabelaTetris.rows[19].cells[4].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[19].cells[4].classList.add('blockPecaAtual');
+
+          pecas.newPeca(19,4,7);
+        }
+        else
+        {
+          bodyTabelaTetris.rows[0].cells[4].appendChild(totalPecas[0]);
+          bodyTabelaTetris.rows[0].cells[4].classList.add('blockPecaAtual');
+
+          pecas.newPeca(0,4,7);
+        }
+        break;
+    }     
       
       pecas.retornarTodasPecas().reverse();
       return pecas;
@@ -250,9 +387,9 @@ function movimentarPecas(e)
       case 39: 
         linhaNova = linhaAntiga;
         colunaNova = colunaAntiga + 1
-        break; 
+        break;
       case 40:       
-        linhaNova = linhaAntiga + 1;
+        linhaNova = tabuleiroGirado ? linhaAntiga - 1 : linhaAntiga + 1;
         colunaNova = colunaAntiga;
         break;
       default:
@@ -260,9 +397,9 @@ function movimentarPecas(e)
     }
 
     if (!pecaChegouFim)
-      pecaChegouFim = linhaNova == 19;
+      pecaChegouFim = (tabuleiroGirado ? linhaNova == 0 : linhaNova == 19) && e.keyCode == 40;
 
-      if ((linhaNova < 20) && (colunaNova >= 0 && colunaNova < 10))
+      if ((tabuleiroGirado ? linhaNova >= 0 : linhaNova < 20) && (colunaNova >= 0 && colunaNova < 10))
       {
         if (!pecaColidiu)
         {
@@ -324,7 +461,7 @@ function movimentarPecas(e)
       bodyTabelaTetris.rows[peca.linha].cells[peca.coluna].classList.remove('blockPecaAtual');
 
       if (!fimDeJogo)
-        fimDeJogo = peca.linha == 0;      
+        fimDeJogo = (tabuleiroGirado ? peca.linha == 19 : peca.linha == 0);
     }
 
     apagaLinhaCompleta();
@@ -341,59 +478,171 @@ function movimentarPecas(e)
 }
 
 function apagaLinhaCompleta()
-{
-  todasColunasPreenchidas = true;
+{  
+  let todasColunasPreenchidas = true;
+  let linhaPossuiPecaEspecial = false;
+  let qtdLinhasEliminadas = 0;
+  let pecaLinha = -1;
+
+  pecas.retornarTodasPecas().reverse();
   for (let qtdPecas = 0; qtdPecas < pecas.quantidadePecas(); qtdPecas++)
-  {    
+  {        
     let peca = pecas.pecas[qtdPecas];
 
-    pecaLinha = peca.linha;    
-
-    for (let colunas = 0; colunas < 10; colunas++)
+    if (pecaLinha != peca.linha)
     {
-      if (bodyTabelaTetris.rows[pecaLinha].cells[colunas].innerHTML == "")
-      {      
-        todasColunasPreenchidas = false;
+      todasColunasPreenchidas = true;
+      pecaLinha = peca.linha;
+
+      for (let colunas = 0; colunas < 10; colunas++)
+      {
+        if (bodyTabelaTetris.rows[pecaLinha].cells[colunas].innerHTML == "")
+          todasColunasPreenchidas = false;
+
+        if (!linhaPossuiPecaEspecial)
+          linhaPossuiPecaEspecial = bodyTabelaTetris.rows[pecaLinha].cells[colunas].innerHTML.includes("7");
       }
+    }
+    else
+    {
+      todasColunasPreenchidas = false;
     }
 
     if (todasColunasPreenchidas)
-    {
+    {      
       for (let colunas = 0; colunas < 10; colunas++)
       {
-        for (let linhas = pecaLinha; linhas > 0; linhas--)
+        if (tabuleiroGirado)
         {
-          bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML = bodyTabelaTetris.rows[linhas-1].cells[colunas].innerHTML;
-
-          console.log(bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML);
-          if (bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML != "")
+          for (let linhas = pecaLinha; linhas < 19; linhas++)
           {
-            console.log("XD")
-            bodyTabelaTetris.rows[linhas].cells[colunas].classList.add('blockPecaTabuleiro');      
+            bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML = bodyTabelaTetris.rows[linhas+1].cells[colunas].innerHTML;
+            
+            if (bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML != "")
+            {            
+              bodyTabelaTetris.rows[linhas].cells[colunas].classList.add('blockPecaTabuleiro');      
+            }
+            else
+            {
+              bodyTabelaTetris.rows[linhas].cells[colunas].classList.remove('blockPecaTabuleiro');
+            }
+
+            bodyTabelaTetris.rows[linhas+1].cells[colunas].innerHTML = null;
+
+            bodyTabelaTetris.rows[linhas+1].cells[colunas].classList.remove('blockPecaAtual');
+            bodyTabelaTetris.rows[linhas+1].cells[colunas].classList.remove('blockPecaTabuleiro');
           }
-          else
+        }
+        else
+        {
+          for (let linhas = pecaLinha; linhas > 0; linhas--)
           {
-            bodyTabelaTetris.rows[linhas].cells[colunas].classList.remove('blockPecaTabuleiro');
+            bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML = bodyTabelaTetris.rows[linhas-1].cells[colunas].innerHTML;            
+            
+            if (bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML != "")
+            {            
+              bodyTabelaTetris.rows[linhas].cells[colunas].classList.add('blockPecaTabuleiro');      
+            }
+            else
+            {
+              bodyTabelaTetris.rows[linhas].cells[colunas].classList.remove('blockPecaTabuleiro');
+            }
+
+            bodyTabelaTetris.rows[linhas-1].cells[colunas].innerHTML = null;
+
+            bodyTabelaTetris.rows[linhas-1].cells[colunas].classList.remove('blockPecaAtual');
+            bodyTabelaTetris.rows[linhas-1].cells[colunas].classList.remove('blockPecaTabuleiro');
           }
-
-          bodyTabelaTetris.rows[linhas-1].cells[colunas].innerHTML = null;
-
-          bodyTabelaTetris.rows[linhas-1].cells[colunas].classList.remove('blockPecaAtual');
-          bodyTabelaTetris.rows[linhas-1].cells[colunas].classList.remove('blockPecaTabuleiro');
         }
       }
-      if (pecas.pecas[0].numeroPeca == 7)    
-        girarTabuleiro();    
+
+      qtdLinhasEliminadas++;
+
+      if (linhaPossuiPecaEspecial)
+        girarTabuleiro();
     }
-  }  
+  }
+  
+  pontuacaoTotal += (10 * qtdLinhasEliminadas) * qtdLinhasEliminadas;
+  qtdLinhasEliminadasTotal += qtdLinhasEliminadas;
+  if (pontuacaoTotal != 0)
+    nivelTotal = Math.ceil((pontuacaoTotal / 300), 0);
+  
+  let formulaVelocidade = 1200 - (nivelTotal * 300);
+
+  console.log(formulaVelocidade);
+  if (formulaVelocidade >= 300)
+  {
+    //clearInterval(myTimer);
+    // BOTÃO PARA BAIXO
+    var keyboardEvent = new KeyboardEvent("keydown", { keyCode: 40 });
+    //myTimer = setInterval(function(){ movimentarPecas(keyboardEvent)}, formulaVelocidade);    
+  }
+
+  document.getElementById("textPontuacao").textContent = "Pontuação: " + pontuacaoTotal;
+  document.getElementById("textLinhasEliminadas").textContent = "Linhas Eliminadas: " +  qtdLinhasEliminadasTotal;
+  document.getElementById("textNivel").textContent = "Nível: " + nivelTotal;
 }
 
 function girarTabuleiro()
-{
+{  
+  let linhaNova = 0;
+  let qtdLinhasMover = 21;
 
-  
+  for (let colunas = 0; colunas < 10; colunas++)
+  {
+    qtdLinhasMover = 21;
+    if (tabuleiroGirado)
+    {      
+      for (let linhas = 0; linhas < 10; linhas++)
+      {
+        qtdLinhasMover = qtdLinhasMover - 2;
+        linhaNova = linhas + qtdLinhasMover;        
 
-  tabuleiroGirado = true;
+        bodyTabelaTetris.rows[linhaNova].cells[colunas].innerHTML = bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML;
+        
+        if (bodyTabelaTetris.rows[linhaNova].cells[colunas].innerHTML != "")
+        {        
+          bodyTabelaTetris.rows[linhaNova].cells[colunas].classList.add('blockPecaTabuleiro');      
+        }
+        else
+        {
+          bodyTabelaTetris.rows[linhaNova].cells[colunas].classList.remove('blockPecaTabuleiro');
+        }
+
+        bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML = null;
+
+        bodyTabelaTetris.rows[linhas].cells[colunas].classList.remove('blockPecaAtual');
+        bodyTabelaTetris.rows[linhas].cells[colunas].classList.remove('blockPecaTabuleiro');
+      }
+    }
+    else
+    {      
+      for (let linhas = 19; linhas > 10; linhas--)
+      {
+        qtdLinhasMover = qtdLinhasMover - 2;
+        linhaNova = linhas - qtdLinhasMover;
+
+        bodyTabelaTetris.rows[linhaNova].cells[colunas].innerHTML = bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML;
+        
+        if (bodyTabelaTetris.rows[linhaNova].cells[colunas].innerHTML != "")
+        {        
+          bodyTabelaTetris.rows[linhaNova].cells[colunas].classList.add('blockPecaTabuleiro');      
+        }
+        else
+        {
+          bodyTabelaTetris.rows[linhaNova].cells[colunas].classList.remove('blockPecaTabuleiro');
+        }
+
+        bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML = null;
+
+        bodyTabelaTetris.rows[linhas].cells[colunas].classList.remove('blockPecaAtual');
+        bodyTabelaTetris.rows[linhas].cells[colunas].classList.remove('blockPecaTabuleiro');
+      }
+    }
+  }
+
+  tabuleiroGirado = !tabuleiroGirado;
 }
 
 function realizarRotacaoPeca(linhaAntiga, colunaAntiga, linhaNova, colunaNova, peca)
@@ -436,8 +685,8 @@ function verificaSeVaiColidir(keyCode)
 
     let {linhaNova, colunaNova} = adicionaPosicaoPeca(keyCode, linhaAntiga, colunaAntiga);    
     
-    if ((linhaNova < 20) && (colunaNova >= 0 && colunaNova < 10))
-    {      
+    if ((tabuleiroGirado ? linhaNova >= 0 : linhaNova < 20) && (colunaNova >= 0 && colunaNova < 10))
+    {
       if (!pecaColidiu)
         pecaColidiu = bodyTabelaTetris.rows[linhaNova].cells[colunaNova].classList.contains("blockPecaTabuleiro");
     }
@@ -466,8 +715,8 @@ function adicionaPosicaoPeca(keyCode, linhaAntiga, colunaAntiga)
       colunaNova = colunaAntiga + 1
       break; 
     case 40:       
-      linhaNova = linhaAntiga + 1;
-      colunaNova = colunaAntiga;      
+      linhaNova = tabuleiroGirado ? linhaAntiga - 1 : linhaAntiga + 1;
+      colunaNova = colunaAntiga;
       break;
     default:
       break;
@@ -522,8 +771,6 @@ function girarPecas(pecas)
       for (let qtdPecas = 0; qtdPecas < pecas.quantidadePecas(); qtdPecas++)      
       {
         console.log(pecas.pecas[qtdPecas].linha, pecas.pecas[qtdPecas].coluna)
-
-        
         if (qtdPecas == 0)
         {
           if (pecas.pecas[0].coluna - pecas.pecas[0].linha >= 5)
@@ -607,11 +854,22 @@ function girarPecas(pecas)
               }
               else if (qtdPecas == 1)
               {
+                peca = pecas.pecas[3];
+                linhaNova = peca.linha + 1;
+                colunaNova = peca.coluna +1 1;
+
+                moverPeca(peca);
+
                 linhaNova = pecas.pecas[qtdPecas].linha + 1;
-                colunaNova = pecas.pecas[qtdPecas].coluna + 1;
+                colunaNova = pecas.pecas[qtdPecas].coluna;
               }
               else if (qtdPecas == 2)
               {          
+                linhaNova = pecas.pecas[qtdPecas].linha + 1;
+                colunaNova = pecas.pecas[qtdPecas].coluna + 1;
+              }
+              else if (qtdPecas == 3)
+              {
                 linhaNova = pecas.pecas[qtdPecas].linha + 1;
                 colunaNova = pecas.pecas[qtdPecas].coluna + 1;
               }
@@ -661,17 +919,13 @@ function girarPecas(pecas)
         {
           moverPeca(peca);
         }
-
-        //console.log(peca);
-        //console.log(bodyTabelaTetris.rows[peca.linha].cells[peca.coluna].innerHTML);
       }
 
       break;
     case 4:
       posicaoPeca = 0;
       for (let qtdPecas = 0; qtdPecas < pecas.quantidadePecas(); qtdPecas++)
-      {
-        //console.log(pecas.pecas[qtdPecas].linha, pecas.pecas[qtdPecas].coluna)
+      {        
         if (qtdPecas == 0)
         {
           if (pecas.pecas[2].coluna == pecas.pecas[3].coluna && pecas.pecas[0].coluna + 1 == pecas.pecas[1].coluna)
@@ -696,8 +950,6 @@ function girarPecas(pecas)
           }
         }
         
-        console.log(posicaoPeca)
-
         switch (posicaoPeca)
         {
           case 1:
@@ -960,8 +1212,6 @@ function moverPeca(peca)
 
   let pecaHTML = bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].innerHTML;
 
-  //console.log(linhaNova);
-
   bodyTabelaTetris.rows[linhaNova].cells[colunaNova].innerHTML = pecaHTML;
   if (linhaNova != linhaAntiga || colunaNova != colunaAntiga)
     bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].innerHTML = null;
@@ -988,15 +1238,22 @@ function ajustarOrdemPecas(keyCode)
     }
   }
 
+  console.log(pecas);
+
   if (pecas.pecas[0].numeroPeca == 3)
-  {
-    if (keyCode == 37 && pecas.pecas[1].coluna > pecas.pecas[2].coluna)  
+  {    
+    if (keyCode == 37 && pecas.pecas[0].coluna < pecas.pecas[1].coluna)
     {      
       console.log("?")
       pecas.retornarTodasPecas().reverse();
     }
   
     if (keyCode == 39 && pecas.pecas[1].coluna < pecas.pecas[2].coluna)  
+    {
+      pecas.retornarTodasPecas().reverse();
+    }
+
+    if (keyCode == 40 && pecas.pecas[0].linha < pecas.pecas[3].linha)
     {
       pecas.retornarTodasPecas().reverse();
     }
@@ -1037,6 +1294,20 @@ function ajustarOrdemPecas(keyCode)
       pecas.retornarTodasPecas().reverse();
     }
   }
+}
+
+function contabilizarTempoPartida(){
+  var segundos = 1;
+  var minutos = 0;
+  var timer = setInterval(function(){
+      document.getElementById('textTempo').textContent = "Tempo: " + (minutos > 0 ? "0" + minutos : "00") + ":" + (segundos >= 10 ? segundos : "0" + segundos);
+      segundos++;
+      if (segundos == 60)
+      {
+        segundos = 0;
+        minutos++;
+      }
+  }, 1000);
 }
 
 class AppLayout{
