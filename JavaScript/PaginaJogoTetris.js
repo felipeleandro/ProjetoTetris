@@ -856,7 +856,7 @@ function girarPecas(pecas)
               {
                 peca = pecas.pecas[3];
                 linhaNova = peca.linha + 1;
-                colunaNova = peca.coluna +1 1;
+                colunaNova = peca.coluna - 1;
 
                 moverPeca(peca);
 
