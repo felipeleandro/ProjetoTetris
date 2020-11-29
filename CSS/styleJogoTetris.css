@@ -89,6 +89,12 @@ th, td{
     background-color: rgb(23, 42, 60);
 }
 
+img{
+    width: 25px;
+    height: 25px;
+    align-items: center;
+}
+
 .container-information {
     display: flex;
     flex-direction: row;

@@ -1,10 +1,11 @@
 class Peca
 {
-    constructor(linha, coluna, numeroPeca)
+    constructor(linha, coluna, numeroPeca, pecaColidiu)
     {
       this.linha = linha;
       this.coluna = coluna;
       this.numeroPeca = numeroPeca;
+      this.pecaColidiu = pecaColidiu;
     }
 }
 
@@ -27,10 +28,17 @@ class Pecas
 
     quantidadePecas(){
       return this.pecas.length;
-  }
+    }
+
+    algumaPecaColidiu(){
+        return this.pecas.some(x => x.pecaColidiu);
+    }
 }
 
 let pecas = new Pecas();
+let fimDeJogo = false;
+let myTimer = null;
+let tabuleiroGirado = false;
 
 function criarTabelaTetris()
 {
@@ -65,7 +73,7 @@ function criarTabelaTetris()
     // BOTÃO PARA BAIXO
     var keyboardEvent = new KeyboardEvent("keydown", { keyCode: 40 });    
     
-    //setInterval(function(){ movimentarPecas(keyboardEvent)}, 1000);
+    //myTimer = setInterval(function(){ movimentarPecas(keyboardEvent)}, 1000);
 }
 
 function adicionarPecasTabela()
@@ -82,7 +90,7 @@ function adicionarPecasTabela()
         imgPeca.setAttribute("id", "imgPeca" + qtdPecas);
         totalPecas.push(imgPeca);
             
-        totalPecas[qtdPecas].src="..\\Images\\Peca.png";
+        totalPecas[qtdPecas].src="..\\Images\\Pecas\\Peca" + numeroPeca + ".png";
     }
 
     let bodyTabelaTetris = document.getElementById('bodyTabelaTetris');    
@@ -170,7 +178,7 @@ function adicionarPecasTabela()
             break;
         case 6:
             let imgPeca4 = document.createElement('img');
-            imgPeca4.src="..\\Images\\Peca.png";
+            imgPeca4.src="..\\Images\\Pecas\\Peca6.png";
 
             bodyTabelaTetris.rows[0].cells[3].appendChild(totalPecas[0]);
             bodyTabelaTetris.rows[0].cells[5].appendChild(totalPecas[1]);
@@ -219,58 +227,13 @@ function movimentarPecas(e)
   
   pecaColidiu = verificaSeVaiColidir(e.keyCode)
 
-  if (pecas.pecas[0].numeroPeca == 11)
-  {
-    if (e.keyCode == 37 && pecas.pecas[0].coluna > pecas.pecas[1].coluna)  
-    {      
-      pecas.retornarTodasPecas().reverse();
-    }
-  
-    if (e.keyCode == 39 && pecas.pecas[0].coluna < pecas.pecas[1].coluna)  
-    {
-      pecas.retornarTodasPecas().reverse();
-    }
-  }
-
-  if (pecas.pecas[0].numeroPeca == 5)
-  {
-    if (e.keyCode == 37 && pecas.pecas[1].coluna > pecas.pecas[2].coluna)  
-    {      
-      pecas.retornarTodasPecas().reverse();
-    }
-  
-    if (e.keyCode == 39 && pecas.pecas[1].coluna < pecas.pecas[2].coluna)  
-    {
-      pecas.retornarTodasPecas().reverse();
-    }
-
-    if (e.keyCode == 40 && pecas.pecas[0].linha < pecas.pecas[1].linha)  
-    {      
-      pecas.retornarTodasPecas().reverse();
-    }
-  }
-
-  if (pecas.pecas[0].numeroPeca == 6)
-  {
-    if (e.keyCode == 37 && pecas.pecas[0].coluna > pecas.pecas[1].coluna)  
-    {      
-      pecas.retornarTodasPecas().reverse();
-    }
-  
-    if (e.keyCode == 39 && pecas.pecas[0].coluna < pecas.pecas[1].coluna)  
-    {
-      pecas.retornarTodasPecas().reverse();
-    }
-
-    if (e.keyCode == 40 && pecas.pecas[1].linha < pecas.pecas[2].linha)
-    {     
-      pecas.retornarTodasPecas().reverse();
-    }
-  }
+  ajustarOrdemPecas(e.keyCode);
     
   for (let qtdPecas = 0; qtdPecas < pecas.quantidadePecas(); qtdPecas++)
   {    
-    let peca = pecas.pecas[qtdPecas];    
+    let peca = pecas.pecas[qtdPecas];
+
+    peca.pecaColidiu = false;
     
     let linhaAntiga = peca.linha;
     let colunaAntiga = peca.coluna;
@@ -359,10 +322,78 @@ function movimentarPecas(e)
 
       bodyTabelaTetris.rows[peca.linha].cells[peca.coluna].classList.add('blockPecaTabuleiro');
       bodyTabelaTetris.rows[peca.linha].cells[peca.coluna].classList.remove('blockPecaAtual');
+
+      if (!fimDeJogo)
+        fimDeJogo = peca.linha == 0;      
     }
 
-    adicionarPecasTabela();      
+    apagaLinhaCompleta();
+
+    if (!fimDeJogo)
+      adicionarPecasTabela();
+    else
+    {
+      alert("O jogo acabou")
+      document.onkeydown = null;
+      clearInterval(myTimer);
+    }
   }
+}
+
+function apagaLinhaCompleta()
+{
+  todasColunasPreenchidas = true;
+  for (let qtdPecas = 0; qtdPecas < pecas.quantidadePecas(); qtdPecas++)
+  {    
+    let peca = pecas.pecas[qtdPecas];
+
+    pecaLinha = peca.linha;    
+
+    for (let colunas = 0; colunas < 10; colunas++)
+    {
+      if (bodyTabelaTetris.rows[pecaLinha].cells[colunas].innerHTML == "")
+      {      
+        todasColunasPreenchidas = false;
+      }
+    }
+
+    if (todasColunasPreenchidas)
+    {
+      for (let colunas = 0; colunas < 10; colunas++)
+      {
+        for (let linhas = pecaLinha; linhas > 0; linhas--)
+        {
+          bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML = bodyTabelaTetris.rows[linhas-1].cells[colunas].innerHTML;
+
+          console.log(bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML);
+          if (bodyTabelaTetris.rows[linhas].cells[colunas].innerHTML != "")
+          {
+            console.log("XD")
+            bodyTabelaTetris.rows[linhas].cells[colunas].classList.add('blockPecaTabuleiro');      
+          }
+          else
+          {
+            bodyTabelaTetris.rows[linhas].cells[colunas].classList.remove('blockPecaTabuleiro');
+          }
+
+          bodyTabelaTetris.rows[linhas-1].cells[colunas].innerHTML = null;
+
+          bodyTabelaTetris.rows[linhas-1].cells[colunas].classList.remove('blockPecaAtual');
+          bodyTabelaTetris.rows[linhas-1].cells[colunas].classList.remove('blockPecaTabuleiro');
+        }
+      }
+      if (pecas.pecas[0].numeroPeca == 7)    
+        girarTabuleiro();    
+    }
+  }  
+}
+
+function girarTabuleiro()
+{
+
+  
+
+  tabuleiroGirado = true;
 }
 
 function realizarRotacaoPeca(linhaAntiga, colunaAntiga, linhaNova, colunaNova, peca)
@@ -372,13 +403,10 @@ function realizarRotacaoPeca(linhaAntiga, colunaAntiga, linhaNova, colunaNova, p
   bodyTabelaTetris.rows[linhaNova].cells[colunaNova].innerHTML = pecaHTML;
 
   if (pecaAuxiliar == null && bodyTabelaTetris.rows[linhaNova].cells[colunaNova].classList.contains("blockPecaAtual"))
-  {    
-    console.log("?")
+  {        
     pecaAuxiliar = peca;
     linhaAuxiliar = linhaAntiga;
     colunaAuxiliar = colunaAntiga;
-
-    console.log("k " + linhaAuxiliar)
   }
   else
   {
@@ -453,72 +481,26 @@ function adicionaPosicaoPeca(keyCode, linhaAntiga, colunaAntiga)
 
 function girarPecas(pecas)
 {
-  for (let qtdPecas = 0; qtdPecas < pecas.quantidadePecas(); qtdPecas++)
-  {  
-    switch (pecas.pecas[0].numeroPeca)
-    {
-      case 1:
-      case 11:
-        if (qtdPecas == 0)
+  let informacoesNovasPosicoes = null;
+  let peca = null;
+  let posicaoPeca = 0;
+  
+  switch (pecas.pecas[0].numeroPeca)
+  {
+    case 1:
+    case 11:
+      for (let qtdPecas = 0; qtdPecas < pecas.quantidadePecas(); qtdPecas++)
+      { 
+        informacoesNovasPosicoes = calcularNovasPosicoes(qtdPecas);
+
+        linhaNova = informacoesNovasPosicoes.linhaNova;
+        colunaNova = informacoesNovasPosicoes.colunaNova;
+
+        peca = pecas.pecas[qtdPecas];
+
+        if (!pecas.algumaPecaColidiu())
         {
-          let pecaAuxiliar = pecas.pecas[0];
-          pecas.pecas[0] = pecas.pecas[3];
-          pecas.pecas[3] = pecaAuxiliar;
-
-          pecaAuxiliar = pecas.pecas[1];
-          pecas.pecas[1] = pecas.pecas[2];
-          pecas.pecas[2] = pecaAuxiliar;          
-        }
-
-        if (pecas.pecas[0].linha == pecas.pecas[3].linha)
-        {
-          let peca = pecas.pecas[qtdPecas];
-
-          let linhaAntiga = peca.linha;
-          let colunaAntiga = peca.coluna;
-
-          let linhaNova = peca.linha + qtdPecas;
-          let colunaNova = pecas.pecas[0].coluna;
-
-          let pecaHTML = bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].innerHTML;
-
-          console.log(pecaHTML);
-
-          bodyTabelaTetris.rows[linhaNova].cells[colunaNova].innerHTML = pecaHTML;
-          if (linhaNova != linhaAntiga)
-            bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].innerHTML = null;
-
-          bodyTabelaTetris.rows[linhaNova].cells[colunaNova].classList.add('blockPecaAtual');
-          bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].classList.remove('blockPecaAtual');
-
-          peca.linha = linhaNova;
-          peca.coluna = colunaNova;
-
-          peca.numeroPeca = 1;
-        }
-        else
-        {          
-          let peca = pecas.pecas[qtdPecas];
-
-          let linhaAntiga = peca.linha;
-          let colunaAntiga = peca.coluna;
-
-          let linhaNova = pecas.pecas[0].linha;
-          let colunaNova = peca.coluna + qtdPecas;
-
-          let pecaHTML = bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].innerHTML;
-
-          bodyTabelaTetris.rows[linhaNova].cells[colunaNova].innerHTML = pecaHTML;
-          if (colunaNova != colunaAntiga)
-            bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].innerHTML = null;
-
-          bodyTabelaTetris.rows[linhaNova].cells[colunaNova].classList.add('blockPecaAtual');
-          bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].classList.remove('blockPecaAtual');
-
-          peca.linha = linhaNova;
-          peca.coluna = colunaNova;
-
-          peca.numeroPeca = 11;
+          moverPeca(peca);
         }
 
         if (qtdPecas == 3)
@@ -531,23 +513,528 @@ function girarPecas(pecas)
           pecas.pecas[2] = pecas.pecas[1];
           pecas.pecas[1] = pecaAuxiliar;          
         }
-        break;
-      case 2:
-        console.log("GirarPeca2")
-        break;
+      }
+      break;
+    case 2:        
+      break;
+    case 3:
+      posicaoPeca = 0;
+      for (let qtdPecas = 0; qtdPecas < pecas.quantidadePecas(); qtdPecas++)      
+      {
+        console.log(pecas.pecas[qtdPecas].linha, pecas.pecas[qtdPecas].coluna)
+
+        
+        if (qtdPecas == 0)
+        {
+          if (pecas.pecas[0].coluna - pecas.pecas[0].linha >= 5)
+          {
+            //pecas.retornarTodasPecas().reverse();
+          }
+
+          if (pecas.pecas[2].coluna == pecas.pecas[3].coluna && pecas.pecas[0].coluna == pecas.pecas[1].coluna + 1)
+          {
+            posicaoPeca = 1;
+          }
+          else if (pecas.pecas[2].linha == pecas.pecas[3].linha && pecas.pecas[0].coluna == pecas.pecas[1].coluna)
+          {
+            posicaoPeca = 2;
+          }
+          else if (pecas.pecas[2].coluna == pecas.pecas[3].coluna && pecas.pecas[0].coluna + 1 == pecas.pecas[1].coluna)
+          {
+            posicaoPeca = 3;
+          }
+          else if (pecas.pecas[2].linha == pecas.pecas[3].linha && pecas.pecas[2].coluna == pecas.pecas[3].coluna + 1)
+          {
+            posicaoPeca = 4;            
+          }
+          else
+          {
+            posicaoPeca = 0;
+          }
+        }
+        
+        switch (posicaoPeca)
+        {
+          case 1:
+            if (qtdPecas == 0)
+            {
+              linhaNova = pecas.pecas[qtdPecas].linha;
+              colunaNova = pecas.pecas[qtdPecas].coluna - 2;
+            }
+            else if (qtdPecas == 1)
+            {
+              linhaNova = pecas.pecas[qtdPecas].linha - 1;
+              colunaNova = pecas.pecas[qtdPecas].coluna - 1;
+            }
+            else if (qtdPecas == 3)
+            {
+              linhaNova = pecas.pecas[qtdPecas].linha + 1;
+              colunaNova = pecas.pecas[qtdPecas].coluna + 1;
+            }
+            else
+            {
+              linhaNova = pecas.pecas[qtdPecas].linha;
+              colunaNova = pecas.pecas[qtdPecas].coluna;
+            }
+            break;
+          case 2:
+              if (qtdPecas == 0)
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha - 2;
+                colunaNova = pecas.pecas[qtdPecas].coluna;
+              }
+              else if (qtdPecas == 1)
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha - 1;
+                colunaNova = pecas.pecas[qtdPecas].coluna + 1;
+              }
+              else if (qtdPecas == 3)
+              {          
+                linhaNova = pecas.pecas[qtdPecas].linha + 1;
+                colunaNova = pecas.pecas[qtdPecas].coluna - 1;
+              }
+              else
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha;
+                colunaNova = pecas.pecas[qtdPecas].coluna;
+              }
+              break;
+            case 3:
+              if (qtdPecas == 0)
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha + 2;
+                colunaNova = pecas.pecas[qtdPecas].coluna;
+              }
+              else if (qtdPecas == 1)
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha + 1;
+                colunaNova = pecas.pecas[qtdPecas].coluna + 1;
+              }
+              else if (qtdPecas == 2)
+              {          
+                linhaNova = pecas.pecas[qtdPecas].linha + 1;
+                colunaNova = pecas.pecas[qtdPecas].coluna + 1;
+              }
+              else
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha;
+                colunaNova = pecas.pecas[qtdPecas].coluna;
+              }
+              break;
+            case 4:              
+              if (qtdPecas == 0)
+              {
+                peca = pecas.pecas[2];
+                linhaNova = peca.linha - 1;
+                colunaNova = peca.coluna - 1;
+
+                moverPeca(peca);
+
+                linhaNova = pecas.pecas[qtdPecas].linha;
+                colunaNova = pecas.pecas[qtdPecas].coluna + 2;
+              }
+              else if (qtdPecas == 1)
+              {
+                peca = pecas.pecas[3];
+                linhaNova = peca.linha - 2;
+                colunaNova = peca.coluna;
+
+                moverPeca(peca);
+
+                linhaNova = pecas.pecas[qtdPecas].linha + 1;
+                colunaNova = pecas.pecas[qtdPecas].coluna - 1;
+              }
+              else
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha;
+                colunaNova = pecas.pecas[qtdPecas].coluna;
+              }
+              break;
+          default:
+            linhaNova = pecas.pecas[qtdPecas].linha;
+            colunaNova = pecas.pecas[qtdPecas].coluna;
+        }
+
+        peca = pecas.pecas[qtdPecas];
+
+        if (!pecas.algumaPecaColidiu())
+        {
+          moverPeca(peca);
+        }
+
+        //console.log(peca);
+        //console.log(bodyTabelaTetris.rows[peca.linha].cells[peca.coluna].innerHTML);
+      }
+
+      break;
+    case 4:
+      posicaoPeca = 0;
+      for (let qtdPecas = 0; qtdPecas < pecas.quantidadePecas(); qtdPecas++)
+      {
+        //console.log(pecas.pecas[qtdPecas].linha, pecas.pecas[qtdPecas].coluna)
+        if (qtdPecas == 0)
+        {
+          if (pecas.pecas[2].coluna == pecas.pecas[3].coluna && pecas.pecas[0].coluna + 1 == pecas.pecas[1].coluna)
+          {
+            posicaoPeca = 1;
+          }
+          else if (pecas.pecas[2].linha == pecas.pecas[3].linha && pecas.pecas[0].coluna == pecas.pecas[1].coluna)
+          {
+            posicaoPeca = 2;
+          }
+          else if (pecas.pecas[2].coluna == pecas.pecas[3].coluna && pecas.pecas[0].coluna - 1 == pecas.pecas[1].coluna)
+          {
+            posicaoPeca = 3;
+          }
+          else if (pecas.pecas[2].linha == pecas.pecas[3].linha && pecas.pecas[2].coluna == pecas.pecas[3].coluna + 1)
+          {
+            posicaoPeca = 4;            
+          }
+          else
+          {
+            posicaoPeca = 0;
+          }
+        }
+        
+        console.log(posicaoPeca)
+
+        switch (posicaoPeca)
+        {
+          case 1:
+            if (qtdPecas == 0)
+            {
+              linhaNova = pecas.pecas[qtdPecas].linha - 2;
+              colunaNova = pecas.pecas[qtdPecas].coluna;
+            }
+            else if (qtdPecas == 1)
+            {
+              linhaNova = pecas.pecas[qtdPecas].linha - 1;
+              colunaNova = pecas.pecas[qtdPecas].coluna - 1;
+            }
+            else if (qtdPecas == 3)
+            {
+              linhaNova = pecas.pecas[qtdPecas].linha + 1;
+              colunaNova = pecas.pecas[qtdPecas].coluna + 1;
+            }
+            else
+            {
+              linhaNova = pecas.pecas[qtdPecas].linha;
+              colunaNova = pecas.pecas[qtdPecas].coluna;
+            }
+            break;
+          case 2:
+              if (qtdPecas == 0)
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha;
+                colunaNova = pecas.pecas[qtdPecas].coluna + 2;
+              }
+              else if (qtdPecas == 1)
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha - 1;
+                colunaNova = pecas.pecas[qtdPecas].coluna + 1;
+              }
+              else if (qtdPecas == 3)
+              {          
+                linhaNova = pecas.pecas[qtdPecas].linha + 1;
+                colunaNova = pecas.pecas[qtdPecas].coluna - 1;
+              }
+              else
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha;
+                colunaNova = pecas.pecas[qtdPecas].coluna;
+              }
+              break;
+            case 3:
+              if (qtdPecas == 0)
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha + 2;
+                colunaNova = pecas.pecas[qtdPecas].coluna;
+              }
+              else if (qtdPecas == 1)
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha + 1;
+                colunaNova = pecas.pecas[qtdPecas].coluna - 1;
+              }
+              else if (qtdPecas == 2)
+              {          
+                linhaNova = pecas.pecas[qtdPecas].linha;
+                colunaNova = pecas.pecas[qtdPecas].coluna + 1;
+              }
+              else if (qtdPecas == 3)
+              {          
+                linhaNova = pecas.pecas[qtdPecas].linha - 1;
+                colunaNova = pecas.pecas[qtdPecas].coluna;
+              }
+              else
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha;
+                colunaNova = pecas.pecas[qtdPecas].coluna;
+              }
+              break;
+            case 4:              
+              if (qtdPecas == 0)
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha;
+                colunaNova = pecas.pecas[qtdPecas].coluna - 2;
+              }
+              else if (qtdPecas == 1)
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha + 1;
+                colunaNova = pecas.pecas[qtdPecas].coluna + 1;
+              }
+              else if (qtdPecas == 2)
+              {
+                peca = pecas.pecas[3];
+                linhaNova = peca.linha - 1;
+                colunaNova = peca.coluna;
+
+                moverPeca(peca);
+
+                linhaNova = pecas.pecas[qtdPecas].linha;
+                colunaNova = pecas.pecas[qtdPecas].coluna - 1;
+              }
+              else
+              {
+                linhaNova = pecas.pecas[qtdPecas].linha;
+                colunaNova = pecas.pecas[qtdPecas].coluna;
+              }
+              break;
+          default:
+            linhaNova = pecas.pecas[qtdPecas].linha;
+            colunaNova = pecas.pecas[qtdPecas].coluna;
+        }
+
+        peca = pecas.pecas[qtdPecas];
+
+        if (!pecas.algumaPecaColidiu())
+        {
+          moverPeca(peca);
+        }      
+    }
+    break;
+    case 5:
+      console.log("GirarPeca2")
+      break;
+    case 6:
+      console.log("GirarPeca2")
+      break;
+  }
+}
+
+function calcularNovasPosicoes(qtdPecas)
+{
+  let peca = null;
+  let linhaNova = 0;
+  let colunaNova = 0;
+
+  switch (pecas.pecas[0].numeroPeca)
+  {
+    case 1:
+    case 11:
+      if (qtdPecas == 0)
+      {
+        let pecaAuxiliar = pecas.pecas[0];
+        pecas.pecas[0] = pecas.pecas[3];
+        pecas.pecas[3] = pecaAuxiliar;
+
+        pecaAuxiliar = pecas.pecas[1];
+        pecas.pecas[1] = pecas.pecas[2];
+        pecas.pecas[2] = pecaAuxiliar;          
+      }
+
+      if (qtdPecas == 0)
+        verificaSeRotacaoVaiColidir();
+
+      peca = pecas.pecas[qtdPecas];
+
+      if (pecas.pecas[0].linha == pecas.pecas[3].linha)
+      {
+        linhaNova = peca.linha + qtdPecas;    
+        colunaNova = pecas.pecas[0].coluna;
+        peca.numeroPeca = 1;
+      }
+      else
+      {
+        linhaNova = pecas.pecas[0].linha;
+        colunaNova = peca.coluna + qtdPecas;
+        peca.numeroPeca = 11;
+      }
+      break;    
+    case 3:
+      if (qtdPecas == 0)
+        verificaSeRotacaoVaiColidir();
+
+      peca = pecas.pecas[qtdPecas];
+
+      if (pecas.pecas[0].linha == pecas.pecas[3].linha)
+      {
+        linhaNova = peca.linha + qtdPecas;    
+        colunaNova = pecas.pecas[0].coluna;
+        peca.numeroPeca = 1;
+      }
+      else
+      {
+        linhaNova = pecas.pecas[0].linha;
+        colunaNova = peca.coluna + qtdPecas;
+        peca.numeroPeca = 11;
+      }
+      break;
+  }
+      return {linhaNova: linhaNova, colunaNova: colunaNova};
+}
+
+function verificaSeRotacaoVaiColidir()
+{     
+  let linhaNova = 0;
+  let colunaNova = 0;
+  let peca = null;
+
+  for (let qtdPecas = 0; qtdPecas < pecas.quantidadePecas(); qtdPecas++)
+  {
+    linhaNova = 0;
+    colunaNova = 0;
+
+    switch (pecas.pecas[0].numeroPeca)
+    {
+      case 1:
+      case 11:      
+          peca = pecas.pecas[qtdPecas];
+
+          if (pecas.pecas[0].linha == pecas.pecas[3].linha)
+          {
+            linhaNova = peca.linha + qtdPecas;    
+            colunaNova = pecas.pecas[0].coluna;      
+          }
+          else
+          {
+            linhaNova = pecas.pecas[0].linha;
+            colunaNova = peca.coluna + qtdPecas;
+          }
+
+          if ((linhaNova < 20) && (colunaNova >= 0 && colunaNova < 10))
+          {
+            if (!peca.pecaColidiu)
+            {
+              peca.pecaColidiu = bodyTabelaTetris.rows[linhaNova].cells[colunaNova].classList.contains("blockPecaTabuleiro");     
+            }
+          }
+          else
+          {
+            peca.pecaColidiu = true;
+          }
+          break;
       case 3:
-        console.log("GirarPeca2")
+          peca = pecas.pecas[qtdPecas];
+
+          if (pecas.pecas[0].coluna == pecas.pecas[2].coluna && pecas.pecas[2].linha == pecas.pecas[3].linha)
+          {
+            linhaNova = peca.linha + qtdPecas;
+            colunaNova = pecas.pecas[0].coluna;      
+          }
+          else
+          {
+            linhaNova = pecas.pecas[0].linha;
+            colunaNova = peca.coluna + qtdPecas;
+          }
+
+          if ((linhaNova < 20) && (colunaNova >= 0 && colunaNova < 10))
+          {
+            if (!peca.pecaColidiu)
+            {
+              peca.pecaColidiu = bodyTabelaTetris.rows[linhaNova].cells[colunaNova].classList.contains("blockPecaTabuleiro");     
+            }
+          }
+          else
+          {
+            peca.pecaColidiu = true;
+          }
         break;
-      case 4:
-        console.log("GirarPeca2")
-        break;
-      case 5:
-        console.log("GirarPeca2")
-        break;
-      case 6:
-        console.log("GirarPeca2")
-        break;
-      
+    }
+  }
+}
+
+function moverPeca(peca)
+{
+  let linhaAntiga = peca.linha;
+  let colunaAntiga = peca.coluna;
+
+  let pecaHTML = bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].innerHTML;
+
+  //console.log(linhaNova);
+
+  bodyTabelaTetris.rows[linhaNova].cells[colunaNova].innerHTML = pecaHTML;
+  if (linhaNova != linhaAntiga || colunaNova != colunaAntiga)
+    bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].innerHTML = null;
+
+  bodyTabelaTetris.rows[linhaNova].cells[colunaNova].classList.add('blockPecaAtual');
+  bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].classList.remove('blockPecaAtual');
+
+  peca.linha = linhaNova;
+  peca.coluna = colunaNova;
+}
+
+function ajustarOrdemPecas(keyCode)
+{
+  if (pecas.pecas[0].numeroPeca == 11)
+  {
+    if (keyCode == 37 && pecas.pecas[0].coluna > pecas.pecas[1].coluna)  
+    {      
+      pecas.retornarTodasPecas().reverse();
+    }
+  
+    if (keyCode == 39 && pecas.pecas[0].coluna < pecas.pecas[1].coluna)  
+    {
+      pecas.retornarTodasPecas().reverse();
+    }
+  }
+
+  if (pecas.pecas[0].numeroPeca == 3)
+  {
+    if (keyCode == 37 && pecas.pecas[1].coluna > pecas.pecas[2].coluna)  
+    {      
+      console.log("?")
+      pecas.retornarTodasPecas().reverse();
+    }
+  
+    if (keyCode == 39 && pecas.pecas[1].coluna < pecas.pecas[2].coluna)  
+    {
+      pecas.retornarTodasPecas().reverse();
+    }
+  }
+
+  if (pecas.pecas[0].numeroPeca == 5)
+  {
+    if (keyCode == 37 && pecas.pecas[1].coluna > pecas.pecas[2].coluna)  
+    {      
+      pecas.retornarTodasPecas().reverse();
+    }
+  
+    if (keyCode == 39 && pecas.pecas[1].coluna < pecas.pecas[2].coluna)  
+    {
+      pecas.retornarTodasPecas().reverse();
+    }
+
+    if (keyCode == 40 && pecas.pecas[0].linha < pecas.pecas[1].linha)  
+    {      
+      pecas.retornarTodasPecas().reverse();
+    }
+  }
+
+  if (pecas.pecas[0].numeroPeca == 6)
+  {
+    if (keyCode == 37 && pecas.pecas[0].coluna > pecas.pecas[1].coluna)  
+    {      
+      pecas.retornarTodasPecas().reverse();
+    }
+  
+    if (keyCode == 39 && pecas.pecas[0].coluna < pecas.pecas[1].coluna)  
+    {
+      pecas.retornarTodasPecas().reverse();
+    }
+
+    if (keyCode == 40 && pecas.pecas[1].linha < pecas.pecas[2].linha)
+    {     
+      pecas.retornarTodasPecas().reverse();
     }
   }
 }
