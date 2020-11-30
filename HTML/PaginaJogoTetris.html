@@ -46,8 +46,15 @@
 
     <main>
         <div class="container-pai">
-            <div id="divTabelaTetris" class="container-jogo"">
-                <button id="btnIniciarJogo" onclick="criarTabelaTetris()">Jogar</button>
+            <div id="divTabelaTetris" class="container-jogo">
+                <div id ="divOpcaoTabuleiro">
+                    <input type="radio" name="radioTipoTabuleiro" id="radioOpcaoMenor" value="Tabuleiro Clássico (10x20)">
+                    <label for="radioMasculino">Tabuleiro Clássico (10x20)</label><br>                
+                    <input type="radio" name="radioTipoTabuleiro" id="radioOpcaoMaior" value="Tabuleiro Maior (22x44)">
+                    <label for="radioFeminino">Tabuleiro Maior (22x44)</label><br>
+
+                    <button id="btnIniciarJogo" onclick="criarTabelaTetris()">Jogar</button>
+                </div>
             </div>
 
             <div>

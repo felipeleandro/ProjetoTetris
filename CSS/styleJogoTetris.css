@@ -55,7 +55,8 @@ a {
     display: block;
     padding: 1rem 3rem;
     text-decoration: none;
-    margin-bottom: 5rem;    
+    margin-top: 5rem;
+    margin-bottom: 5rem;
 }
 
 #divTabelaTetris {
@@ -80,19 +81,39 @@ table, th, td {
     margin: auto;
     border: 1px solid white;
     border-collapse: collapse;
-    position: relative;
+    position: static;
 }
 
-th, td{
+.tabelaTabuleiroMenor{
     width: 25px;
-    height: 25px;
+    height: 25px;    
+    margin-left: auto;
+    margin-right: auto;
     background-color: rgb(23, 42, 60);
 }
 
-img{
-    width: 25px;
-    height: 25px;
-    align-items: center;
+.tabelaTabuleiroMaior{
+    width: 15px;
+    height: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(23, 42, 60);
+}
+
+.tabuleiroMenor{
+    width: 23px;
+    height: 23px;    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tabuleiroMaior{
+    width: 13px;
+    height: 13px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .container-information {
