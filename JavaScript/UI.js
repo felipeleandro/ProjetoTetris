@@ -56,33 +56,26 @@ function criarTabelaTetris()
     document.onkeydown = function(e) { movimentarPecasTabuleiro(e) };
 
     let velocidadeInicial = 900;
-    adicionarPecasTabuleiro();    
+    adicionarPecasTabuleiro();
     adicionarMovimentacaoAutomaticaPecas(velocidadeInicial);
     contabilizarTempoPartida();
 }
 
-function contabilizarTempoPartida()
+function adicionarMovimentacaoAutomaticaPecas(formulaVelocidade)
 {
-    var segundos = 1;
-    var minutos = 0;
-    var timer = setInterval(function()
-    {
-        document.getElementById('textTempo').textContent = "Tempo: " + (minutos > 0 ? "0" + minutos : "00") + ":" + (segundos >= 10 ? segundos : "0" + segundos);
-        segundos++;
-        if (segundos == 60)
-        {
-            segundos = 0;
-            minutos++;
-        }
-    }, 1000);
+    clearInterval(myTimer);
+    // BOTÃO PARA BAIXO
+    var keyboardEvent = new KeyboardEvent("keydown", { keyCode: 40 });
+
+    myTimer = setInterval(function() { movimentarPecasTabuleiro(keyboardEvent) }, formulaVelocidade);
 }
 
 function atualizarPontuacaoTela(qtdLinhasEliminadas)
 {
     pontuacaoTotal += (10 * qtdLinhasEliminadas) * qtdLinhasEliminadas;
     qtdLinhasEliminadasTotal += qtdLinhasEliminadas;
-
-    atualizaVelocidadeMovimentacao(pontuacaoTotal, qtdLinhasEliminadas);    
+    
+    atualizaVelocidadeMovimentacao(pontuacaoTotal);
 
     document.getElementById("textPontuacao").textContent = "Pontuação: " + pontuacaoTotal;
     document.getElementById("textLinhasEliminadas").textContent = "Linhas Eliminadas: " + qtdLinhasEliminadasTotal;
@@ -100,13 +93,20 @@ function atualizaVelocidadeMovimentacao(pontuacaoTotal)
     adicionarMovimentacaoAutomaticaPecas(formulaVelocidade);
 }
 
-function adicionarMovimentacaoAutomaticaPecas(formulaVelocidade)
+function contabilizarTempoPartida()
 {
-    clearInterval(myTimer);
-    // BOTÃO PARA BAIXO
-    var keyboardEvent = new KeyboardEvent("keydown", { keyCode: 40 });
-
-    myTimer = setInterval(function() { movimentarPecasTabuleiro(keyboardEvent) }, formulaVelocidade);
+    var segundos = 1;
+    var minutos = 0;
+    var timer = setInterval(function()
+    {
+        document.getElementById('textTempo').textContent = "Tempo: " + (minutos > 0 ? "0" + minutos : "00") + ":" + (segundos >= 10 ? segundos : "0" + segundos);
+        segundos++;
+        if (segundos == 60)
+        {
+            segundos = 0;
+            minutos++;
+        }
+    }, 1000);
 }
 
 function alertarFimDeJogo()

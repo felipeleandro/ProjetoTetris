@@ -4,20 +4,9 @@ let tabuleiroGirado = false;
 
 function adicionarPecasTabuleiro()
 {
-    let numeroPeca = Math.floor(Math.random() * 7) + 1;    
-
-    pecas.pecas = [];
-    let totalPecas = [];
-
-    for (let qtdPecas = 0; qtdPecas < 4; qtdPecas++)
-    {
-        let imgPeca = document.createElement('img');
-        imgPeca.setAttribute("id", "imgPeca" + qtdPecas);
-        imgPeca.classList.add(largura == 44 ? "tabuleiroMaior" : "tabuleiroMenor")
-
-        totalPecas.push(imgPeca);
-        totalPecas[qtdPecas].src = "..\\Images\\Pecas\\Peca" + numeroPeca + ".png";
-    }    
+    let numeroPeca = Math.floor(Math.random() * 7) + 1;
+    
+    pecas.pecas = [];     
     
     coluna = largura / 2;
     linha = tabuleiroGirado ? altura - 1 : 3;
@@ -118,7 +107,15 @@ function adicionarPecasTabuleiro()
             }
             break;
         case 7:
-            adicionarPecaSingular(linha, coluna-1, numeroPeca, 0);
+            if (tabuleiroGirado)
+            {
+                adicionarPecaSingular(linha, coluna-1, numeroPeca, 0);
+            }
+            else
+            {
+                linha = 0;
+                adicionarPecaSingular(linha, coluna-1, numeroPeca, 0);
+            }
             break;
     }
 
@@ -140,7 +137,7 @@ function adicionarPecaSingular(linha, coluna, numeroPeca, qtdPecas)
 
 function movimentarPecasTabuleiro(e)
 {
-    if (e.keyCode == 38)    
+    if (e.keyCode == 38)
         girarPecas(pecas);
     
     let pecaChegouFim = false;
@@ -235,7 +232,7 @@ function movimentarPecasTabuleiro(e)
             bodyTabelaTetris.rows[peca.linha].cells[peca.coluna].classList.add('blockPecaTabuleiro');
             bodyTabelaTetris.rows[peca.linha].cells[peca.coluna].classList.remove('blockPecaAtual');
 
-            if (!fimDeJogo) 
+            if (!fimDeJogo)
                 fimDeJogo = (tabuleiroGirado ? peca.linha == altura - 1 : peca.linha == 0);
         }
 

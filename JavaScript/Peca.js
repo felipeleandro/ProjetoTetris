@@ -1,4 +1,5 @@
 let posicaoPeca = 0;
+
 class Peca
 {
     constructor(linha, coluna, numeroPeca, pecaColidiu)
@@ -36,6 +37,39 @@ class Pecas
     algumaPecaColidiu()
     {
         return this.pecas.some(x => x.pecaColidiu);
+    }
+}
+
+function girarPecas(pecas)
+{
+    let informacoesNovasPosicoes = null;
+    let peca = null;
+
+    if (pecas.pecas[0].numeroPeca == 1)
+    {
+        for (let qtdPecas = 0; qtdPecas < pecas.quantidadePecas(); qtdPecas++)
+        {
+            informacoesNovasPosicoes = calcularNovasPosicoes(qtdPecas);
+            linhaNova = informacoesNovasPosicoes.linhaNova;
+            colunaNova = informacoesNovasPosicoes.colunaNova;
+            peca = pecas.pecas[qtdPecas];
+
+            if (!pecas.algumaPecaColidiu())
+            {
+                moverPeca(peca);
+            }
+
+            if (qtdPecas == 3)
+            {
+                let pecaAuxiliar = pecas.pecas[3];
+                pecas.pecas[3] = pecas.pecas[0];
+                pecas.pecas[0] = pecaAuxiliar;
+
+                pecaAuxiliar = pecas.pecas[2];
+                pecas.pecas[2] = pecas.pecas[1];
+                pecas.pecas[1] = pecaAuxiliar;
+            }
+        }
     }
 }
 
@@ -116,39 +150,6 @@ function realizarRotacaoPeca(linhaAntiga, colunaAntiga, linhaNova, colunaNova, p
     bodyTabelaTetris.rows[linhaAntiga].cells[colunaAntiga].classList.remove('blockPecaAtual');
     peca.linha = linhaNova;
     peca.coluna = colunaNova;
-}
-
-function girarPecas(pecas)
-{
-    let informacoesNovasPosicoes = null;
-    let peca = null;
-
-    if (pecas.pecas[0].numeroPeca == 1)
-    {
-        for (let qtdPecas = 0; qtdPecas < pecas.quantidadePecas(); qtdPecas++)
-        {
-            informacoesNovasPosicoes = calcularNovasPosicoes(qtdPecas);
-            linhaNova = informacoesNovasPosicoes.linhaNova;
-            colunaNova = informacoesNovasPosicoes.colunaNova;
-            peca = pecas.pecas[qtdPecas];
-
-            if (!pecas.algumaPecaColidiu())
-            {
-                moverPeca(peca);
-            }
-
-            if (qtdPecas == 3)
-            {
-                let pecaAuxiliar = pecas.pecas[3];
-                pecas.pecas[3] = pecas.pecas[0];
-                pecas.pecas[0] = pecaAuxiliar;
-
-                pecaAuxiliar = pecas.pecas[2];
-                pecas.pecas[2] = pecas.pecas[1];
-                pecas.pecas[1] = pecaAuxiliar;
-            }
-        }
-    }
 }
 
 function calcularNovasPosicoes(qtdPecas)
