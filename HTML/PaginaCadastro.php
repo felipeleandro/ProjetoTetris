@@ -8,8 +8,7 @@
 	</head>
 	
     <body>
-        <form method="POST" action="cadastro.php">
-        <div id="backArrow" onclick="location.href='PaginaInicial.html'"> </div>
+        <div id="backArrow" onclick="location.href='PaginaInicial.php'"> </div>
 
         <div class="container">
 
@@ -18,40 +17,40 @@
 			</div>
 			
             <div class="container-right">
-                <form>
+                <form method="post" action="cadastro.php">
 					<legend>Controle de acesso</legend>
 					
                     <div class="input-container">
-                        <input type="text" id="nome" placeholder="Nome Completo" required/>
+                        <input type="text" id="nome" name ="nome" placeholder="Nome Completo" required/>
                         <label for="nome">Nome Completo</label>
 					</div>
 					
                     <div class="input-container">
-                        <input type="text" id="data_nascimento" placeholder="Data de nascimento" required/>
+                        <input type="date" id="data_nascimento" name="data_nascimento" placeholder="Data de nascimento" required/>
                         <label for="data_nascimento">Data de nascimento</label>
 					</div>
 					
                     <div class="input-container">
-                        <input type="text" id="telefone" placeholder="Telefone" required/>
+                        <input type="text" id="telefone" name="telefone" placeholder="Telefone" required/>
                         <label for="telefone">Telefone</label>
 					</div>
 					
                     <div class="input-container">
-                        <input type="text" id="cpf" placeholder="CPF" required/>
+                        <input type="text" id="cpf" name = "cpf" placeholder="CPF" required/>
                         <label for="cpf">CPF</label>
 					</div>
 					
                     <div class="input-container">
-                        <input type="text" id="email" placeholder="E-mail" required/>
+                        <input type="email" id="email" name = "email" placeholder="E-mail" required/>
                         <label for="email">E-mail</label>
 					</div>
 					
                     <div class="input-container">
-                        <input type="password" id="password" placeholder="Senha" required/>
+                        <input type="password" id="password" name = "senha" placeholder="Senha" required/>
                         <label for="password">Senha</label>
 					</div>
 					
-                    <input type="button" value="Cadastrar" class="button" onclick="location.href='PaginaJogoTetris.html'"/>
+                    <input type="submit" value="Cadastrar" class="button"/>
                 </form>
             </div>
 		</div>

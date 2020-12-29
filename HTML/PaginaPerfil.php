@@ -28,11 +28,11 @@
             <div id="menu" class="active">
                 <nav>
                     <ul>
-                        <li><a href="PaginaJogoTetris.html"><i class="fas fa-gamepad"></i><span>Jogo</span></a></li>
-                        <li><a href="PaginaInicial.html"><i class="fa fa-home"></i><span>Tela inicial</span></a></li>
-                        <li class="active"><a href="PaginaPerfil.html"><i class="fas fa-user-circle"></i><span>Perfil</span></a></li>
-                        <li><a href="RankingGlobal.html"><i class="fas fa-medal"></i><span>Ranking Global</span></a></li>
-                        <li><a href="PaginaLogin.html"><i class="fas fa-sign-out-alt"></i><span>Sair</span></a></li>
+                        <li><a href="PaginaJogoTetris.php"><i class="fas fa-gamepad"></i><span>Jogo</span></a></li>
+                        <li><a href="PaginaInicial.php"><i class="fa fa-home"></i><span>Tela inicial</span></a></li>
+                        <li class="active"><a href="PaginaPerfil.php"><i class="fas fa-user-circle"></i><span>Perfil</span></a></li>
+                        <li><a href="RankingGlobal.php"><i class="fas fa-medal"></i><span>Ranking Global</span></a></li>
+                        <li><a href="PaginaLogin.php"><i class="fas fa-sign-out-alt"></i><span>Sair</span></a></li>
                     </ul>
                 </nav>
 
@@ -91,7 +91,7 @@
                     <div class="input-container">
                         <input type="password" id="password" placeholder="Senha" required />
                         <label for="password">Senha</label>
-                        <input type="button" value="Salvar" class="button" onclick="location.href='PaginaJogoTetris.html'" />
+                        <input type="button" value="Salvar" class="button" onclick="location.href='PaginaJogoTetris.php'" />
                     </div>
                 </div>
             </form>

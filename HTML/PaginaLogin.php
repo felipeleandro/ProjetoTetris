@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div id="backArrow" onclick="location.href='PaginaInicial.html'"> </div>
+    <div id="backArrow" onclick="location.href='PaginaInicial.php'"> </div>
 
         <div class="container">        
 
@@ -17,23 +17,23 @@
             </div>
 
             <div class="container-right">
-                <form>
+                <form method="post" action="login.php">
                     <legend>Controle de acesso</legend>
 
                     <div class="input-container">
-                        <input type="text" id="user" placeholder="Usuário" required/>
+                        <input type="text" id="user" name="login" placeholder="Usuário" required/>
                         <label for="user">Usuário</label>
                     </div>
 
                     <div class="input-container">
-                        <input type="password" id="password" placeholder="Senha" required/>
+                        <input type="password" id="password" name ="senha" placeholder="Senha" required/>
                         <label for="password">Senha</label>
                     </div>
 
-                    <input type="button" value="Entrar" class="button" onclick="location.href='PaginaJogoTetris.html'" />
+                    <input type="submit" value="Entrar" name = "entrar" class="button" />
 
                     <div class="input-container">
-                        <a href="PaginaCadastro.html" id="linkCadastro">Não possui cadastro?</a>                    
+                        <a href="PaginaCadastro.php" id="linkCadastro">Não possui cadastro?</a>                    
                     </div>
 
                 </form>

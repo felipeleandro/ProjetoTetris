@@ -12,8 +12,8 @@
     <body>
         <div class="divInicio">
             <div class="divBotoesCadastroLogin">
-                <a href="PaginaCadastro.html" class="login">Cadastre-se</a>
-                <a href="PaginaLogin.html" class="login">Login</a>    
+                <a href="PaginaCadastro.php" class="login">Cadastre-se</a>
+                <a href="PaginaLogin.php" class="login">Login</a>    
             </div>
 
             <div class="divMensagem">
@@ -21,7 +21,7 @@
                 <p>Melhore suas habilidades e suba o placar </p>
             </div>
 
-            <a href="PaginaLogin.html" class="btn">Jogar</a>            
+            <a href="PaginaLogin.php" class="btn">Jogar</a>            
         </div>
     </body>
 </html>
