@@ -1,0 +1,19 @@
+CREATE TABLE TETRIS;
+
+CREATE TABLE PONTUACAO
+(
+    NOME VARCHAR (50),
+    PONTUACAO INT,
+    NIVEL INT,
+    TEMPO_PARTIDA TIME
+)
+
+CREATE TABLE usuarios
+(
+login VARCHAR (40),
+data_nascimento date,
+telefone varchar (30),
+cpf varchar (30),
+email varchar (40),
+senha varchar (50)
+)
