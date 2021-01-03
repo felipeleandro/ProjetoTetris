@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+
+
+$nome = $_SESSION['login'];
 $tempo = $_POST["tempo"];
 $pontuacao = $_POST["pontuacao"];
 $linhasEliminadas = $_POST["linhasEliminadas"];
@@ -7,7 +11,7 @@ $nivel = $_POST["nivelDificuldade"];
 $connect = mysqli_connect('localhost','root','', 'tetris');
 
 
-$query = "INSERT INTO pontuacao (TEMPO_PARTIDA,PONTUACAO,LINHAS_ELIMINADAS,NIVEL) VALUES ('$tempo','$pontuacao','$linhasEliminadas','$nivel')";
+$query = "INSERT INTO pontuacao (NOME,TEMPO_PARTIDA,PONTUACAO,LINHAS_ELIMINADAS,NIVEL) VALUES ('$nome','$tempo','$pontuacao','$linhasEliminadas','$nivel')";
 $insert = mysqli_query($connect,$query);
 
 if($insert){
