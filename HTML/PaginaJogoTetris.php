@@ -61,12 +61,9 @@
             </div>
 
             <div>
-            
-                <form action="Pontuacao.php" method="get">
                     <div class="container-ranking-pai">
                     <div class="container-ranking">
                         <ul>
-
                             <form action="GravarRanking.php" method="POST" id="formRanking">
                                 <input type="hidden" name="tempo" id="tempo">
                                 <input type="hidden" name="pontuacao" id="pontuacao">
@@ -81,7 +78,6 @@
                             <li><i class="fas fa-medal"></i><span>Pontuação 5</span></li>
                         </ul>
                     </div>
-                <form>
                 </div>
             
 
