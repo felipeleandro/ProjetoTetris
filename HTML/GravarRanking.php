@@ -13,10 +13,10 @@ $insert = mysqli_query($connect,$query);
 if($insert){
     echo"<script language='javascript' type='text/javascript'>
     alert('Pontuação Salva com Sucesso!');window.location.
-    href='PaginaInicial.php'</script>";
+    href='PaginaJogoTetris.php'</script>";
   }else{
     echo"<script language='javascript' type='text/javascript'>
     alert('Não foi possível salvar pontuação');window.location
-    .href='PaginaInicial.php'</script>";
+    .href='PaginaJogoTetris.php'</script>";
   }
 ?>
