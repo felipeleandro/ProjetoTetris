@@ -61,10 +61,19 @@
             </div>
 
             <div>
+            
                 <form action="Pontuacao.php" method="get">
                     <div class="container-ranking-pai">
                     <div class="container-ranking">
                         <ul>
+
+                            <form action="gravarRanking.php" method="POST" id="formRanking">
+                                <input type="hidden" name="Subtempo" id="Subtempo">
+                                <input type="hidden" name="Subpontuacao" id="Subpontuacao">
+                                <input type="hidden" name="Sublinhas_eliminadas" id="Sublinhas_eliminadas">
+                                <input type="hidden" name="Subnivel_dificuldade" id="Subnivel_dificuldade">
+                            </form>
+
                             <h1>Histórico de Pontuações</h1>
                             <h3>Felipe Souza</h3>
                             <li><i class="fas fa-arrow-circle-up"></i><span>Nivel 2</span></li>
@@ -79,6 +88,15 @@
                 <div class="container-ranking-pai">
                     <div class="container-ranking">
                         <ul>
+
+                        <form action="gravarRanking.php" method="POST" id="formRanking">
+                                <input type="hidden" name="Subtempo" id="Subtempo">
+                                <input type="hidden" name="Subpontuacao" id="Subpontuacao">
+                                <input type="hidden" name="Sublinhas_eliminadas" id="Sublinhas_eliminadas">
+                                <input type="hidden" name="Subnivel_dificuldade" id="Subnivel_dificuldade">
+                        </form>
+
+
                             <h1>Histórico de Pontuações</h1>
                             <h3>Felipe Souza</h3>
                             <li><i class="fas fa-arrow-circle-up"></i><span>Nivel 2</span></li>
