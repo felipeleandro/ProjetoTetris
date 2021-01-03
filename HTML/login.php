@@ -14,8 +14,10 @@ $connect = mysqli_connect('localhost','root','', 'tetris');
         .href='PaginaInicial.php';</script>";
         die();
       }else{
+        $_SESSION['user'] = $login;
         setcookie("login",$login);
         header("Location:PaginaJogoTetris.php");
       }
   }
+
 ?>
