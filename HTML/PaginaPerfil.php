@@ -1,8 +1,7 @@
 <?php 
     session_start();
-
-    if(!isset($_SESSION['user'])){
-        header("Location: login.php");
+    if(!isset($_SESSION['login'])){
+        header("Location: PaginaLogin.php");
         exit;
     }
 
@@ -41,7 +40,7 @@
                         <li><a href="PaginaInicial.php"><i class="fa fa-home"></i><span>Tela inicial</span></a></li>
                         <li class="active"><a href="PaginaPerfil.php"><i class="fas fa-user-circle"></i><span>Perfil</span></a></li>
                         <li><a href="RankingGlobal.php"><i class="fas fa-medal"></i><span>Ranking Global</span></a></li>
-                        <li><a href="PaginaLogin.php"><i class="fas fa-sign-out-alt"></i><span>Sair</span></a></li>
+                        <li><a href="desconectar.php"><i class="fas fa-sign-out-alt"></i><span>Sair</span></a></li>
                     </ul>
                 </nav>
 
