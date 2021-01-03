@@ -1,13 +1,13 @@
 <?php
 
+$tempo = $_POST["tempo"];
+$pontuacao = $_POST["pontuacao"];
+$linhasEliminadas = $_POST["linhasEliminadas"];
+$nivel = $_POST["nivelDificuldade"];
 $connect = mysqli_connect('localhost','root','', 'tetris');
-$usuario = $_POST("")
-$tempo = $_POST("tempo")
-$pontuacao = $_POST("pontuacao")
-$linhasEliminadas = $_POST("linhasEliminadas")
-$nivel = $_POST("nivelDificuldade")
 
-$query = "INSERT INTO pontuacao (NOME,TEMPO_PARTIDA,PONTUACAO,LINHAS_ELIMINADAS,NIVEL) VALUES ('$usuario','$tempo','$pontuacao','$linhasEliminadas','$nivel')";
+
+$query = "INSERT INTO pontuacao (TEMPO_PARTIDA,PONTUACAO,LINHAS_ELIMINADAS,NIVEL) VALUES ('$tempo','$pontuacao','$linhasEliminadas','$nivel')";
 $insert = mysqli_query($connect,$query);
 
 if($insert){
@@ -19,5 +19,4 @@ if($insert){
     alert('Não foi possível salvar pontuação');window.location
     .href='PaginaInicial.php'</script>";
   }
-
 ?>
