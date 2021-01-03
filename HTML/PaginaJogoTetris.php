@@ -67,7 +67,7 @@
                     <div class="container-ranking">
                         <ul>
 
-                            <form action="gravarRanking.php" method="POST" id="formRanking">
+                            <form action="GravarRanking.php" method="POST" id="formRanking">
                                 <input type="hidden" name="tempo" id="tempo">
                                 <input type="hidden" name="pontuacao" id="pontuacao">
                                 <input type="hidden" name="linhasEliminadas" id="linhasEliminadas">
