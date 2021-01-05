@@ -81,11 +81,10 @@
                             </form>
             <?php
  
-            
-            //Conexão e consulta ao Mysql
             $connect = mysqli_connect('localhost','root','', 'tetris');
             $user = $_SESSION['login'];
-            $query_select = "SELECT NOME, NIVEL, TEMPO_PARTIDA as TEMPO, PONTUACAO  FROM pontuacao WHERE NOME = '$user' ORDER BY PONTUACAO DESC";
+            $query_select = "SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(u.login, ' ', 1), ' ', -1) AS NOME , E.NIVEL, E.TEMPO_PARTIDA AS TEMPO, PONTUACAO FROM PONTUACAO E JOIN usuarios U on E.NOME = U.email
+            WHERE E.NOME = '$user'ORDER BY PONTUACAO DESC";
             $qry = mysqli_query($connect, $query_select);
   
             //Pegando os nomes dos campos
