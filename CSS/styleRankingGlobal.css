@@ -1,7 +1,7 @@
 table .rankingGlobal {
     border-collapse: collapse;
     width: 100%;
-    margin: 2en 2en;
+    margin: 2rem 2rem;
     float: left;
     border: 1px solid black;    
 }
@@ -44,8 +44,7 @@ header {
     width: 100%;
 }
 
-header #title-header {
-    margin-right: calc(var(--default-padding)*2);
+header #title-header {    
     text-transform: uppercase;
     width: 40vw;
     color: var(--primary-color-lighten);
@@ -54,8 +53,7 @@ header #title-header {
 
 header #menu-button {
     color: var(--primary-color);
-    font-size: 1.75em;
-    margin-right: calc(var(--default-padding) / 2);
+    font-size: 1.75em;    
 }
 
 #logo-menu-container {
@@ -71,17 +69,14 @@ header #menu-button {
 
 #menu.active #menu-retract {
     color: #ffffff;
-    cursor: pointer;
-    bottom: calc(var(--default-padding)/2);
-    font-size: 1.5rem;
-    left: calc(var(--opened-menu-width) - var(--default-padding) + 0.5rem);
+    cursor: pointer;    
+    font-size: 1.5rem;    
     position: fixed;
 }
 
 #menu.retracted #menu-retract {
     color: #ffffff;
-    cursor: pointer;
-    bottom: calc(var(--default-padding)/2);
+    cursor: pointer;    
     font-size: 1.5rem;
     left: 1.5em;
     position: fixed;
@@ -91,7 +86,6 @@ header #menu-button {
 #menu.retracted nav {
     width: var(--retracted-menu-width);
     opacity: 1;
-    height: calc(100vh - var(--header-height));
 }
 
 #menu.retracted nav span {
@@ -115,12 +109,11 @@ nav {
 
 nav {
     background: var(--primary-color);
-    height: calc(100vh - var(--header-height));
+    height: 100%;
     left: 0;
     overflow: hidden;
     padding-top: var(--search-bar-height);
-    position: fixed;
-    top: calc(var(--header-height));
+    position: fixed;    
 }
 
 nav a {
@@ -129,7 +122,7 @@ nav a {
 
 nav i {
     color: inherit;
-    margin-right: calc(var(--default-padding) / 2);
+    margin-right: 15px;
 }
 
 nav ul {
@@ -197,15 +190,11 @@ main {
     #menu.active #busca-container {
         width: var(--busca-container-width);
     }
-    #busca-container input[type="search"]:focus~i {
-        right: calc(var(--default-padding) / 2);
-    }
     nav {
         padding-top: var(--default-padding);
         top: var(--header-height);
     }
     main {
-        left: var(--opened-menu-width);
-        width: calc(100vw - var(--opened-menu-width));
+        left: var(--opened-menu-width);        
     }
 }
