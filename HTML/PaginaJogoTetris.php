@@ -104,9 +104,9 @@
                 //Montando o corpo da tabela
             $table .= '<tbody>';
             while($r = mysqli_fetch_array($qry)){
-                $table .= '<tr>';
+                $table .= '<tr class="corpotexto">';
                 for($i = 0;$i < $num_fields; $i++){
-                    $table .= '<td>'.$r[$fields[$i]].'</td>';
+                    $table .= '<td class="corpotexto">'.$r[$fields[$i]].'</td>';
                 }
                 $table .= '</tr>';
             }

@@ -3,11 +3,17 @@ table .rankingGlobal {
     width: 100%;
     margin: 2rem 2rem;
     float: left;
-    border: 1px solid black;    
+    border: 1px solid black;
+    text-align: center;
 }
 
 .rankingGlobal tr:nth-child(even) {
     background-color: white;
+    text-align: center;
+}
+
+.cabecalho {
+    text-align: center;
 }
 
 .rankingGlobal td {
@@ -16,16 +22,19 @@ table .rankingGlobal {
     font-size: 12pt;
     margin-left: 0.2rem;
     padding-right: 0.2rem;
+    text-align: center;
 }
 
 .cont_rankingGlobal {
     display: flex;
     margin-top: 1rem;
+    text-align: center;
 }
 
 .cont_rankingGlobal th {
     font-size: 1.25rem;
-    padding: 0.5rem;    
+    padding: 0.5rem;
+    text-align: center;
 }
 
 .container-information {
@@ -44,7 +53,7 @@ header {
     width: 100%;
 }
 
-header #title-header {    
+header #title-header {
     text-transform: uppercase;
     width: 40vw;
     color: var(--primary-color-lighten);
@@ -53,7 +62,7 @@ header #title-header {
 
 header #menu-button {
     color: var(--primary-color);
-    font-size: 1.75em;    
+    font-size: 1.75em;
 }
 
 #logo-menu-container {
@@ -69,14 +78,14 @@ header #menu-button {
 
 #menu.active #menu-retract {
     color: #ffffff;
-    cursor: pointer;    
-    font-size: 1.5rem;    
+    cursor: pointer;
+    font-size: 1.5rem;
     position: fixed;
 }
 
 #menu.retracted #menu-retract {
     color: #ffffff;
-    cursor: pointer;    
+    cursor: pointer;
     font-size: 1.5rem;
     left: 1.5em;
     position: fixed;
@@ -107,13 +116,17 @@ nav {
     width: var(--opened-menu-width);
 }
 
+h2 {
+    white-space: nowrap;
+}
+
 nav {
     background: var(--primary-color);
     height: 100%;
     left: 0;
     overflow: hidden;
     padding-top: var(--search-bar-height);
-    position: fixed;    
+    position: fixed;
 }
 
 nav a {
@@ -195,6 +208,6 @@ main {
         top: var(--header-height);
     }
     main {
-        left: var(--opened-menu-width);        
+        left: var(--opened-menu-width);
     }
 }

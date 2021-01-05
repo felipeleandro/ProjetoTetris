@@ -18,54 +18,70 @@ if ($connect->connect_error) {
     $sql = "UPDATE usuarios SET login = '$nome' where username = '$user'";
     if ($connect->query($sql) === TRUE) {
         echo"<script language='javascript' type='text/javascript'>
-        alert('Cadastro Atualizado com sucesso!');window.location.href='
-        AtualizaCadastro.php';</script>";
+        alert('Cadastro Atualizado com sucesso!');window.location
+        .href='
+        PaginaPerfil.php';</script>";
+
       } else {
         echo"<script language='javascript' type='text/javascript'>
         alert('Não foi possivel atualizar cadastro!');window.location.href='
-        AtualizaCadastro.php';</script>";
+        PaginaPerfil.php';</script>";
+
       }
-  }
+
+  } 
   
-  if($email != null || $email != ''){
+   if($email != null || $email != ''){
     $sql = "UPDATE usuarios SET email = '$email' where username = '$user'";
     if ($connect->query($sql) === TRUE) {
         echo"<script language='javascript' type='text/javascript'>
         alert('Cadastro Atualizado com sucesso!');window.location.href='
-        AtualizaCadastro.php';</script>";
+        PaginaPerfil.php';</script>";
+
       } else {
         echo"<script language='javascript' type='text/javascript'>
         alert('Não foi possivel atualizar cadastro!');window.location.href='
-        AtualizaCadastro.php';</script>";
+        PaginaPerfil.php';</script>";
+
       }
+ 
   }
  
-  if($telefone != null || $telefone != ''){
+   if($telefone != null || $telefone != ''){
     $sql = "UPDATE usuarios SET telefone = '$telefone' where username = '$user'";
     if ($connect->query($sql) === TRUE) {
         echo"<script language='javascript' type='text/javascript'>
         alert('Cadastro Atualizado com sucesso!');window.location.href='
-        AtualizaCadastro.php';</script>";
+        PaginaPerfil.php';</script>";
+
       } else {
         echo"<script language='javascript' type='text/javascript'>
         alert('Não foi possivel atualizar cadastro!');window.location.href='
-        AtualizaCadastro.php';</script>";
+        PaginaPerfil.php';</script>";
+
       }
+  
   }
   
-  if($senha != null || $senha != ''){
+   if($senha != null || $senha != ''){
     $sql = "UPDATE usuarios SET senha = '$senha' where username = '$user'";
     if ($connect->query($sql) === TRUE) {
         echo"<script language='javascript' type='text/javascript'>
         alert('Cadastro Atualizado com sucesso!');window.location.href='
-        AtualizaCadastro.php';</script>";
+        PaginaPerfil.php';</script>";
+
       } else {
         echo"<script language='javascript' type='text/javascript'>
         alert('Não foi possivel atualizar cadastro!');window.location.href='
-        AtualizaCadastro.php';</script>";
+        PaginaPerfil.php';</script>";
+
       }
+ 
+     
   }
-  
-  $connect->close();
+
+  header("Location:PaginaPerfil.php");
+ 
+ $connect->close();
 
 ?>

@@ -97,7 +97,7 @@
 
                 <div class="input-container-2">
                     <div class="input-container">
-                    <input type="text" id="email" name="email" placeholder="E-mail"  />
+                    <input type="email" id="email" name="email" placeholder="E-mail"  />
                         <label for="email"></label>
                     </div>
 
@@ -109,8 +109,9 @@
                     <input type="password" id="password" name="senha" placeholder="Senha"  />
                         <label for="password"></label>
                     </div>
+                    <input type="submit" value="Editar" class="button" onclick="location.href='PaginaPerfil.php'" />
                 </div>
-                <input type="submit" value="Editar" class="button" onclick="location.href='PaginaJogoTetris.php'" />
+
             </form>
         </div>
     </main>
