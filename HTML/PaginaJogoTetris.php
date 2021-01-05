@@ -83,8 +83,7 @@
  
             $connect = mysqli_connect('localhost','root','', 'tetris');
             $user = $_SESSION['login'];
-            $query_select = "SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(u.login, ' ', 1), ' ', -1) AS NOME , E.NIVEL, E.TEMPO_PARTIDA AS TEMPO, PONTUACAO FROM PONTUACAO E JOIN usuarios U on E.NOME = U.email
-            WHERE E.NOME = '$user'ORDER BY PONTUACAO DESC";
+            $query_select = "SELECT nome as UserName, PONTUACAO, NIVEL, tempo_partida as TEMPO, LINHAS_ELIMINADAS AS 'LINHAS ELIMINADAS' FROM pontuacao where nome = '$user'";
             $qry = mysqli_query($connect, $query_select);
   
             //Pegando os nomes dos campos

@@ -6,13 +6,15 @@ $telefone = $_POST['telefone'];
 $cpf = $_POST['cpf'];
 $email = $_POST['email'];
 $senha = MD5($_POST['senha']);
+$username = $_POST['username'];
+$user = $_SESSION['login'];
+
 
 $connect = mysqli_connect('localhost','root','', 'tetris');
-$query_select = "SELECT login FROM usuarios WHERE login = '$login'";
-echo $query_select;
+$query_select = "SELECT username FROM usuarios WHERE username = '$user'";
 $select = mysqli_query($connect,$query_select);
 $array = mysqli_fetch_array($select);
-$logarray = $array['login'];
+$logarray = $array['username'];
 
   if($login == "" || $login == null){
     echo"<script language='javascript' type='text/javascript'>
@@ -28,7 +30,7 @@ $logarray = $array['login'];
         die();
 
       }else{
-        $query = "INSERT INTO usuarios (login,data_nascimento,telefone,cpf,email,senha) VALUES ('$login','$data_nascimento','$telefone','$cpf','$email','$senha')";
+        $query = "INSERT INTO usuarios (login,data_nascimento,telefone,cpf,email,senha, username) VALUES ('$login','$data_nascimento','$telefone','$cpf','$email','$senha', '$username')";
         $insert = mysqli_query($connect,$query);
 
         if($insert){

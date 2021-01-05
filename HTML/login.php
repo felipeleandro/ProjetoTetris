@@ -9,7 +9,7 @@ $connect = mysqli_connect('localhost','root','', 'tetris');
 
   if (isset($entrar)) {
 
-    $verifica = mysqli_query($connect,"SELECT * FROM usuarios WHERE email =
+    $verifica = mysqli_query($connect,"SELECT * FROM usuarios WHERE username =
     '$login' AND senha = '$senha'") or die("erro ao selecionar");
       if (mysqli_num_rows($verifica)<=0){
         echo"<script language='javascript' type='text/javascript'>

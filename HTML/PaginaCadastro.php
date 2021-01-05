@@ -35,7 +35,7 @@
 					</div>
 					
                     <div class="input-container">
-                        <input type="text" id="telefone" name="telefone" placeholder="Telefone" required/>
+                        <input type="text" id="telefone" name="telefone"  required/>
                         <label for="telefone">Telefone</label>
 					</div>
 					
@@ -47,6 +47,11 @@
                     <div class="input-container">
                         <input type="email" id="email" name = "email" placeholder="E-mail" required/>
                         <label for="email">E-mail</label>
+					</div>
+
+                    <div class="input-container">
+                        <input type="text" id="username" name ="username" placeholder="UserName" required/>
+                        <label for="nome">UserName</label>
 					</div>
 					
                     <div class="input-container">
