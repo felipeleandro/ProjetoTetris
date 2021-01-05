@@ -30,7 +30,7 @@ $logarray = $array['username'];
         die();
 
       }else{
-        $query = "INSERT INTO usuarios (login,data_nascimento,telefone,cpf,email,senha, username) VALUES ('$login','$data_nascimento','$telefone','$cpf','$email','$senha', '$username')";
+        $query = "INSERT INTO usuarios (nome,data_nascimento,telefone,cpf,email,senha, username) VALUES ('$login','$data_nascimento','$telefone','$cpf','$email','$senha', '$username')";
         $insert = mysqli_query($connect,$query);
 
         if($insert){

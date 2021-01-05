@@ -1,6 +1,6 @@
 
 <?php
- 
+
 //Conexão e consulta ao Mysql
 $connect = mysqli_connect('localhost','root','', 'tetris');
 $query_select = "SELECT * FROM pontuacao ORDER BY PONTUACAO DESC";
