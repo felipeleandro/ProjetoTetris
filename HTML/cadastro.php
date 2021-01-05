@@ -17,7 +17,7 @@ $logarray = $array['login'];
   if($login == "" || $login == null){
     echo"<script language='javascript' type='text/javascript'>
     alert('O campo login deve ser preenchido');window.location.href='
-    cadastro.html';</script>";
+    cadastro.php';</script>";
 
     }else{
       if($logarray == $login){

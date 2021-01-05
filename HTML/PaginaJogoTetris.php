@@ -43,7 +43,7 @@
             <div id="menu" class="active">
                 <nav>
                     <ul>
-                        <li class="active"><a href="PaginaJogoTetris.html"><i class="fas fa-gamepad"></i><span>Jogo</span></a></li>
+                        <li class="active"><a href="PaginaJogoTetris.php"><i class="fas fa-gamepad"></i><span>Jogo</span></a></li>
                         <li><a href="PaginaInicial.php"><i class="fa fa-home"></i><span>Tela inicial</span></a></li>
                         <li><a href="PaginaPerfil.php"><i class="fas fa-user-circle"></i><span>Perfil</span></a></li>
                         <li><a href="RankingGlobal.php"><i class="fas fa-medal"></i><span>Ranking Global</span></a></li>

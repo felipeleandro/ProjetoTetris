@@ -21,7 +21,7 @@
                 <p>Melhore suas habilidades e suba o placar </p>
             </div>
 
-            <a href="PaginaLogin.php" class="btn">Jogar</a>            
+            <a href="PaginaJogoTetris.php" class="btn">Jogar</a>            
         </div>
     </body>
 </html>

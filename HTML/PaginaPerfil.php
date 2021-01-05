@@ -51,13 +51,22 @@
 
     <main>
         <div class="container-dados">
+            <?php
+            $connect = mysqli_connect('localhost','root','', 'tetris');
+            $user = $_SESSION['login'];
+            $query_select = "SELECT *  FROM usuarios WHERE Login = '$user'";
+            $qry = mysqli_query($connect, $query_select);
+            
+            ?>
             <div>
+            <?php while ($dado = mysqli_fetch_array($qry)){?>
                 <i class="fas fa-user-circle"></i>
-                <p>Felipe Souza</p>
-                <p>22/10/2000</p>
-                <p>(19)9956-3472</p>
-                <p>08963754231</p>
-                <p>Felipe@gmail.com</p>
+                <p><?php echo $dado[0]; ?></p>
+                <p><?php echo $dado[1]; ?></p>
+                <p><?php echo $dado[2]; ?></p>
+                <p><?php echo $dado[3]; ?></p>
+                <p><?php echo $dado[4]; ?></p>
+            <?php } ?>             
             </div>
         </div>
 
