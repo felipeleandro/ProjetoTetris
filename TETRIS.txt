@@ -16,5 +16,6 @@ data_nascimento date,
 telefone varchar (30),
 cpf varchar (30),
 email varchar (40),
-senha varchar (50)
+senha varchar (50),
+username VARCHAR(30)
 );
