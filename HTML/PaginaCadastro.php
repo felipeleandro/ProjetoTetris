@@ -8,7 +8,7 @@
     <head>
         <title>Cadastro</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="..\CSS\styleCadastro.css">
+        <link rel="stylesheet" href="../CSS/styleCadastro.css">
 	</head>
 	
     <body>
@@ -22,7 +22,7 @@
 			
             <div class="container-right">
                 <form method="post" action="cadastro.php">
-					<legend>Controle de acesso</legend>
+					<h4>Controle de acesso</h4>
 					
                     <div class="input-container">
                         <input type="text" id="nome" name ="nome" placeholder="Nome Completo" required/>
@@ -30,12 +30,12 @@
 					</div>
 					
                     <div class="input-container">
-                        <input type="date" id="data_nascimento" name="data_nascimento" placeholder="Data de nascimento" required/>
+                        <input type="date" id="data_nascimento" name="data_nascimento" required/>
                         <label for="data_nascimento">Data de nascimento</label>
 					</div>
 					
                     <div class="input-container">
-                        <input type="text" id="telefone" name="telefone"  required/>
+                        <input type="text" id="telefone" name="telefone" placeholder="Telefone" required/>
                         <label for="telefone">Telefone</label>
 					</div>
 					
@@ -48,11 +48,6 @@
                         <input type="email" id="email" name = "email" placeholder="E-mail" required/>
                         <label for="email">E-mail</label>
 					</div>
-
-                    <div class="input-container">
-                        <input type="text" id="username" name ="username" placeholder="UserName" required/>
-                        <label for="nome">UserName</label>
-					</div>
 					
                     <div class="input-container">
                         <input type="password" id="password" name = "senha" placeholder="Senha" required/>
@@ -64,6 +59,6 @@
             </div>
 		</div>
 		
-		<script type="text/javascript" src="../JavaScript/Utils.js"> </script>		
+		<script src="../JavaScript/Utils.js"> </script>		
     </body>
 </html>

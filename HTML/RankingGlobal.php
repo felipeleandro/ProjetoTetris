@@ -12,8 +12,8 @@
 
 <head>
  
-	<link rel="stylesheet" href="..\CSS\styleJogoTetris.css">
-    <link rel="stylesheet" href="..\CSS\styleRankingGlobal.css">
+	<link rel="stylesheet" href="../CSS/styleJogoTetris.css">
+    <link rel="stylesheet" href="../CSS/styleRankingGlobal.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">    
 
     <title>
@@ -70,7 +70,7 @@
                 }
   
             //Montando o cabeçalho da tabela
-            $table = '<table border="1"><tr>';
+            $table = '<table><tr>';
   
             for($i = 0;$i < $num_fields; $i++){
                 $table .= '<th>'.$fields[$i].'</th>';

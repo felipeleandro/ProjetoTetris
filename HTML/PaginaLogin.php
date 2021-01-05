@@ -9,7 +9,7 @@
 <head>
     <title>Login</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="..\CSS\styleLogin.css">
+    <link rel="stylesheet" href="../CSS/styleLogin.css">
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 
             <div class="container-right">
                 <form method="post" action="login.php">
-                    <legend>Controle de acesso</legend>
+                    <h4>Controle de acesso</h4>
 
                     <div class="input-container">
                         <input type="text" id="user" name="login" placeholder="Usuário" required/>

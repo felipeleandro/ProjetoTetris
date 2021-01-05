@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="..\CSS\styleInicio.css">
+        <link rel="stylesheet" href="../CSS/styleInicio.css">
 
         <title>
             Projeto Tetris - SI401A

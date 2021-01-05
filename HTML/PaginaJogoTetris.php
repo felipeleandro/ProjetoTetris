@@ -10,12 +10,12 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" href="..\CSS\styleJogoTetris.css">
+    <link rel="stylesheet" href="../CSS/styleJogoTetris.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">    
-    <script src="..\JavaScript\Peca.js"></script>
-    <script src="..\JavaScript\Tabuleiro.js"></script>
-    <script src="..\JavaScript\UI.js"></script>
-    <script src="..\JavaScript\PaginaJogoTetris.js"></script>
+    <script src="../JavaScript/Peca.js"></script>
+    <script src="../JavaScript/Tabuleiro.js"></script>
+    <script src="../JavaScript/UI.js"></script>
+    <script src="../JavaScript/PaginaJogoTetris.js"></script>
 
     <title>
         Tetris
@@ -61,9 +61,9 @@
             <div id="divTabelaTetris" class="container-jogo">
                 <div id ="divOpcaoTabuleiro">
                     <input type="radio" name="radioTipoTabuleiro" id="radioOpcaoMenor" value="Tabuleiro Clássico (10x20)">
-                    <label for="radioMasculino">Tabuleiro Clássico (10x20)</label><br>                
+                    <label> Tabuleiro Clássico (10x20)</label><br>                
                     <input type="radio" name="radioTipoTabuleiro" id="radioOpcaoMaior" value="Tabuleiro Maior (22x44)">
-                    <label for="radioFeminino">Tabuleiro Maior (22x44)</label><br>
+                    <label> Tabuleiro Maior (22x44)</label><br>
 
                     <button id="btnIniciarJogo" onclick="criarTabelaTetris()">Jogar</button>
                 </div>
@@ -73,6 +73,7 @@
                     <div class="container-ranking-pai">
                     <div class="container-ranking">
                         <ul>
+						<li>
                             <form action="GravarRanking.php" method="POST" id="formRanking">
                                 <input type="hidden" name="tempo" id="tempo">
                                 <input type="hidden" name="pontuacao" id="pontuacao">
@@ -83,7 +84,8 @@
  
             $connect = mysqli_connect('localhost','root','', 'tetris');
             $user = $_SESSION['login'];
-            $query_select = "SELECT nome as UserName, PONTUACAO, NIVEL, tempo_partida as TEMPO, LINHAS_ELIMINADAS AS 'LINHAS ELIMINADAS' FROM pontuacao where nome = '$user'";
+            $query_select = "SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(u.login, ' ', 1), ' ', -1) AS NOME , E.NIVEL, E.TEMPO_PARTIDA AS TEMPO, PONTUACAO FROM PONTUACAO E JOIN usuarios U on E.NOME = U.email
+            WHERE E.NOME = '$user'ORDER BY PONTUACAO DESC";
             $qry = mysqli_query($connect, $query_select);
   
             //Pegando os nomes dos campos
@@ -94,7 +96,7 @@
                 }
   
             //Montando o cabeçalho da tabela
-            $table = '<table border="1"><tr>';
+            $table = '<table><tr>';
   
             for($i = 0;$i < $num_fields; $i++){
                 $table .= '<th>'.$fields[$i].'</th>';
