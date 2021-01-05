@@ -54,7 +54,7 @@
             <?php
             $connect = mysqli_connect('localhost','root','', 'tetris');
             $user = $_SESSION['login'];
-            $query_select = "SELECT *  FROM usuarios WHERE Login = '$user'";
+            $query_select = "SELECT *  FROM usuarios WHERE username = '$user'";
             $qry = mysqli_query($connect, $query_select);
             
             ?>
@@ -72,45 +72,31 @@
 
         <div class="container-ranking-pai">
             <h1>Controle de acesso</h1>
-            <form>                
+            <form method="post" action='AtualizaCadastro.php'>                
                 <div class="input-container-1">
                     <div class="input-container">
-                        <input type="text" id="user" placeholder="Nome Completo" required />
+                        <input type="text" id="user" name="nome" placeholder="Nome Completo"  />
                         <label for="user">Nome Completo</label>
                     </div>
 
                     <div class="input-container">
-                        <input type="text" id="dataNascimento" placeholder="Data de nascimento" readonly="true" required />
-                        <label for="dataNascimento">Data de nascimento</label>
-                    </div>
-
-                    <div class="input-container">
-                        <input type="text" id="telefone" placeholder="Telefone" required />
+                        <input type="text" id="telefone" name="telefone" placeholder="Telefone"  />
                         <label for="telefone">Telefone</label>
-                    </div>
-
-                    <div class="input-container">
-                        <input type="text" id="cpf" placeholder="CPF" readonly="true" required />
-                        <label for="cpf">CPF</label>
                     </div>
                 </div>
 
                 <div class="input-container-2">
                     <div class="input-container">
-                        <input type="text" id="email" placeholder="E-mail" required />
+                        <input type="text" id="email" name="email" placeholder="E-mail"  />
                         <label for="email">E-mail</label>
                     </div>
 
                     <div class="input-container">
-                        <input type="password" id="username" placeholder="Username" readonly="true" required />
-                        <label for="username">Senha</label>
-                    </div>
-                    <div class="input-container">
-                        <input type="password" id="password" placeholder="Senha" required />
+                        <input type="password" id="password" name="senha" placeholder="Senha"  />
                         <label for="password">Senha</label>
-                        <input type="button" value="Salvar" class="button" onclick="location.href='PaginaJogoTetris.php'" />
                     </div>
                 </div>
+                <input type="submit" value="Salvar" class="button" />
             </form>
         </div>
     </main>
