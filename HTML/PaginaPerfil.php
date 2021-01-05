@@ -71,7 +71,7 @@
         </div>
 
         <div class="container-ranking-pai">
-            <h1>Controle de acesso</h1>
+            
             <form>                
                 <div class="input-container-1">
                     <div class="input-container">
@@ -108,7 +108,7 @@
                     <div class="input-container">
                         <input type="password" id="password" placeholder="Senha" required />
                         <label for="password">Senha</label>
-                        <input type="button" value="Salvar" class="button" onclick="location.href='PaginaJogoTetris.php'" />
+                        <input type="button" value="Editar" class="button" onclick="location.href='PaginaJogoTetris.php'" />
                     </div>
                 </div>
             </form>

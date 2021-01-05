@@ -30,6 +30,11 @@
 					</div>
 					
                     <div class="input-container">
+                        <input type="text" id="username" name ="username" placeholder="Username" required/>
+                        <label for="nome">Username</label>
+					</div>
+
+                    <div class="input-container">
                         <input type="date" id="data_nascimento" name="data_nascimento" required/>
                         <label for="data_nascimento">Data de nascimento</label>
 					</div>
@@ -52,6 +57,7 @@
                     <div class="input-container">
                         <input type="password" id="password" name = "senha" placeholder="Senha" required/>
                         <label for="password">Senha</label>
+
 					</div>
 					
                     <input type="submit" value="Cadastrar" class="button"/>

@@ -48,7 +48,7 @@ a {
     display: flex;
 }
 
-#btnIniciarJogo{
+#btnIniciarJogo {
     background: #d63031;
     border-radius: 100px;
     color: white;
@@ -73,26 +73,33 @@ a {
     justify-content: center;
 }
 
-#bodyTabelaTetris{
+#bodyTabelaTetris {
     height: 50vh;
 }
 
-table, th, td {
+table,
+th,
+td {
     margin: auto;
     border: 1px solid white;
     border-collapse: collapse;
     position: static;
 }
 
-.tabelaTabuleiroMenor{
+.cabecalho {
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+
+.tabelaTabuleiroMenor {
     width: 25px;
-    height: 25px;    
+    height: 25px;
     margin-left: auto;
     margin-right: auto;
     background-color: gray
 }
 
-.tabelaTabuleiroMaior{
+.tabelaTabuleiroMaior {
     width: 15px;
     height: 15px;
     margin-left: auto;
@@ -100,15 +107,15 @@ table, th, td {
     background-color: gray;
 }
 
-.tabuleiroMenor{
+.tabuleiroMenor {
     width: 23px;
-    height: 23px;    
+    height: 23px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.tabuleiroMaior{
+.tabuleiroMaior {
     width: 13px;
     height: 13px;
     display: block;
@@ -231,14 +238,14 @@ header #menu-button {
 
 #menu.active #menu-retract {
     color: #ffffff;
-    cursor: pointer;    
-    font-size: 1.5rem;    
+    cursor: pointer;
+    font-size: 1.5rem;
     position: fixed;
 }
 
 #menu.retracted #menu-retract {
     color: #ffffff;
-    cursor: pointer;    
+    cursor: pointer;
     font-size: 1.5rem;
     left: 1.5em;
     position: fixed;
@@ -247,7 +254,7 @@ header #menu-button {
 
 #menu.retracted nav {
     width: var(--retracted-menu-width);
-    opacity: 1;    
+    opacity: 1;
 }
 
 #menu.retracted nav span {
@@ -357,6 +364,6 @@ main {
         top: var(--header-height);
     }
     main {
-        left: var(--opened-menu-width);        
+        left: var(--opened-menu-width);
     }
 }

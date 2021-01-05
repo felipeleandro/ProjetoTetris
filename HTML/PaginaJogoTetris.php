@@ -96,10 +96,10 @@
                 }
   
             //Montando o cabeçalho da tabela
-            $table = '<table><tr>';
+            $table = '<table class = "cabecalho"><tr class = "cabecalho">';
   
             for($i = 0;$i < $num_fields; $i++){
-                $table .= '<th>'.$fields[$i].'</th>';
+                $table .= '<th class = "cabecalho">'.$fields[$i].'</th>';
             }
   
                 //Montando o corpo da tabela

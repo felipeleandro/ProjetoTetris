@@ -93,7 +93,7 @@ body {
 .input-container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .input-container input {
@@ -132,12 +132,11 @@ body {
     text-transform: uppercase;
 }
 
-#backArrow{
+#backArrow {
     background: url("../Images/left-arrow.png");
     height: 64px;
     width: 64px;
     margin-top: 10px;
     margin-left: 10px;
     cursor: pointer;
-  }
-  
+}

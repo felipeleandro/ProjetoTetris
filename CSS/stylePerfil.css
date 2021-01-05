@@ -68,8 +68,8 @@ a {
     overflow: hidden;
     position: relative;
     transition: all cubic-bezier(0.50, 0.04, 0.10, 0.8) 0.5s;
-    height: 580px;
-    width: 1120px;
+    height: 100%;
+    width: 100%;
     margin-top: 1rem;
     justify-items: left;
 }
@@ -77,7 +77,7 @@ a {
 .container-ranking-pai form {
     display: flex;
     flex-direction: row;
-    padding: 2rem;
+    padding: 1rem;
     align-items: flex-end;
 }
 
@@ -87,7 +87,7 @@ a {
     overflow: hidden;
     position: relative;
     transition: all cubic-bezier(0.50, 0.04, 0.10, 0.8) 0.5s;
-    height: 580px;
+    height: 435px;
     width: 300px;
     margin-top: 1rem;
     justify-items: left;
@@ -121,9 +121,9 @@ a {
 .input-container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     text-decoration: none;
-    margin-right: 10rem;
+    margin-right: 3rem;
 }
 
 .input-container-1 {
@@ -134,7 +134,7 @@ a {
 .input-container-2 {
     display: flex;
     flex-direction: column;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 .input-container input {
@@ -143,9 +143,9 @@ a {
     border-radius: 0.5rem;
     box-shadow: 0px 3px 10px -1px rgba(0, 0, 0, 0.3);
     outline: none;
-    padding: 1rem;
-    padding-right: 7rem;
-    margin-bottom: 1rem;
+    padding: 0.9rem;
+    padding-right: 5rem;
+    margin-bottom: 0.5rem;
     margin-top: 1rem;
 }
 
@@ -155,7 +155,7 @@ a {
     border-radius: 0.5rem;
     box-shadow: 0px 3px 10px -1px rgba(0, 0, 0, 0.3);
     outline: none;
-    padding: 1rem;
+    padding: 0.9rem;
     padding-right: 10rem;
 }
 
@@ -193,7 +193,7 @@ a {
 }
 
 .container-ranking-pai h1 {
-	margin-left: 10px;
+    margin-left: 10px;
     margin-top: 2rem;
     font-size: 1.2rem;
     font-weight: 800;
@@ -209,7 +209,7 @@ header {
 }
 
 header #title-header {
-	margin-left: 15px;
+    margin-left: 15px;
     text-transform: uppercase;
     width: 40vw;
     color: var(--primary-color-lighten);
@@ -219,7 +219,7 @@ header #title-header {
 header #menu-button {
     color: var(--primary-color);
     font-size: 1.75em;
-	margin-right: 20px;
+    margin-right: 20px;
 }
 
 #logo-menu-container {
@@ -235,14 +235,14 @@ header #menu-button {
 
 #menu.active #menu-retract {
     color: #ffffff;
-    cursor: pointer;    
-    font-size: 1.5rem;    
+    cursor: pointer;
+    font-size: 1.5rem;
     position: fixed;
 }
 
 #menu.retracted #menu-retract {
     color: #ffffff;
-    cursor: pointer;    
+    cursor: pointer;
     font-size: 1.5rem;
     left: 1.5em;
     position: fixed;
@@ -251,7 +251,7 @@ header #menu-button {
 
 #menu.retracted nav {
     width: var(--retracted-menu-width);
-    opacity: 1;    
+    opacity: 1;
 }
 
 #menu.retracted nav span {
@@ -274,8 +274,8 @@ nav {
 }
 
 nav {
-    background: var(--primary-color);    
-	height: 100%;
+    background: var(--primary-color);
+    height: 100%;
     left: 0;
     overflow: hidden;
     padding-top: var(--search-bar-height);
@@ -288,7 +288,7 @@ nav a {
 
 nav i {
     color: inherit;
-	margin-right: 15px;
+    margin-right: 15px;
 }
 
 nav ul {
@@ -356,12 +356,11 @@ main {
     #menu.active #busca-container {
         width: var(--busca-container-width);
     }
-    
     nav {
         padding-top: var(--default-padding);
         top: var(--header-height);
     }
     main {
-        left: var(--opened-menu-width);        
+        left: var(--opened-menu-width);
     }
 }
